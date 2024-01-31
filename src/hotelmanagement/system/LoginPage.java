@@ -91,7 +91,7 @@ public class LoginPage extends javax.swing.JFrame {
 
         jButton2.setBackground(new java.awt.Color(0, 51, 51));
         jButton2.setForeground(new java.awt.Color(255, 255, 255));
-        jButton2.setText("Signup");
+        jButton2.setText("Sign up");
 
         jLabel4.setText("USERNAME");
 
