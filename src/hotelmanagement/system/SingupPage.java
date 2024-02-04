@@ -46,6 +46,8 @@ public class SingupPage extends javax.swing.JFrame {
 
         jPanel1.setBackground(new java.awt.Color(0, 51, 51));
 
+        jPanel2.setBackground(new java.awt.Color(255, 255, 255));
+
         jTextField1.setText("Username");
 
         jPasswordField1.setText("jPasswordField1");
