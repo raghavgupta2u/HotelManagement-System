@@ -121,6 +121,7 @@ public class LoginPage extends javax.swing.JFrame {
             }
         });
 
+        showpassword.setForeground(java.awt.Color.gray);
         showpassword.setText("Show Password");
         showpassword.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         showpassword.addActionListener(new java.awt.event.ActionListener() {
