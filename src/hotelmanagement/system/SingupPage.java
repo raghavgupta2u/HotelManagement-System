@@ -197,6 +197,7 @@ public class SingupPage extends javax.swing.JFrame {
 
     private void loginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginActionPerformed
         // TODO add your handling code here:
+         
         LoginPage backtologin = new LoginPage();
         backtologin.show();
         dispose();
