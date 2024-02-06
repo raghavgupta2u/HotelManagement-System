@@ -42,7 +42,7 @@ public class LoginPage extends javax.swing.JFrame {
         username = new javax.swing.JTextField();
         userpassword = new javax.swing.JPasswordField();
         jLabel2 = new javax.swing.JLabel();
-        SigninButton = new javax.swing.JButton();
+        Signup = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
@@ -90,9 +90,14 @@ public class LoginPage extends javax.swing.JFrame {
         jLabel2.setForeground(java.awt.Color.gray);
         jLabel2.setText("Hotel Magnificent");
 
-        SigninButton.setBackground(new java.awt.Color(0, 51, 51));
-        SigninButton.setForeground(new java.awt.Color(255, 255, 255));
-        SigninButton.setText("Sign up");
+        Signup.setBackground(new java.awt.Color(0, 51, 51));
+        Signup.setForeground(new java.awt.Color(255, 255, 255));
+        Signup.setText("Sign up");
+        Signup.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                SignupActionPerformed(evt);
+            }
+        });
 
         jLabel4.setText("USERNAME");
 
@@ -144,7 +149,7 @@ public class LoginPage extends javax.swing.JFrame {
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addComponent(userlogin, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(SigninButton, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 344, Short.MAX_VALUE)
+                            .addComponent(Signup, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 344, Short.MAX_VALUE)
                             .addComponent(userpassword, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 344, Short.MAX_VALUE)
                             .addComponent(username, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 344, Short.MAX_VALUE)
                             .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.LEADING))
@@ -170,7 +175,7 @@ public class LoginPage extends javax.swing.JFrame {
                 .addGap(25, 25, 25)
                 .addComponent(userlogin)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(SigninButton)
+                .addComponent(Signup)
                 .addGap(160, 160, 160)
                 .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
@@ -215,7 +220,15 @@ public class LoginPage extends javax.swing.JFrame {
         } catch (ClassNotFoundException | SQLException ex) {
             Logger.getLogger(LoginPage.class.getName()).log(Level.SEVERE, null, ex);
         }
+        dispose();
     }//GEN-LAST:event_userloginActionPerformed
+
+    private void SignupActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SignupActionPerformed
+        // TODO add your handling code here:
+        SingupPage S = new SingupPage();
+        S.show();
+        dispose();
+    }//GEN-LAST:event_SignupActionPerformed
 
     /**
      * @param args the command line arguments
@@ -253,7 +266,7 @@ public class LoginPage extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton SigninButton;
+    private javax.swing.JButton Signup;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
