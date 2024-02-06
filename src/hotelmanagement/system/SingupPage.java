@@ -4,6 +4,11 @@
  */
 package hotelmanagement.system;
 
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import javax.swing.JOptionPane;
 
 /**
@@ -51,15 +56,11 @@ public class SingupPage extends javax.swing.JFrame {
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
 
-        newuserpassword.setText("jPasswordField1");
-
         Adminusername.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 AdminusernameActionPerformed(evt);
             }
         });
-
-        Adminpassword.setText("jPasswordField2");
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
         jLabel1.setText("Singup");
@@ -87,8 +88,6 @@ public class SingupPage extends javax.swing.JFrame {
         jLabel3.setText("Password");
 
         jLabel4.setText("Confirm Password");
-
-        confirmuserpassword.setText("jPasswordField3");
 
         jLabel5.setText("Admin Username");
 
@@ -197,15 +196,14 @@ public class SingupPage extends javax.swing.JFrame {
 
     private void loginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginActionPerformed
         // TODO add your handling code here:
-         
         LoginPage backtologin = new LoginPage();
         backtologin.show();
         dispose();
     }//GEN-LAST:event_loginActionPerformed
 
     private void newsingupActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_newsingupActionPerformed
-        // TODO add your handling code here:
-        if (newusername.getText().equals("")) {
+        // TODO add your handling code here  
+       if (newusername.getText().equals("")) {
             JOptionPane.showMessageDialog(this, "username must not be empty");
             newusername.requestFocus();
         }
@@ -219,15 +217,50 @@ public class SingupPage extends javax.swing.JFrame {
         }
         
         else if (Adminusername.getText().equals("")) {
-            JOptionPane.showMessageDialog(this, "username must not be empty");
+            JOptionPane.showMessageDialog(this, "Admin username must not be empty");
             Adminusername.requestFocus();
         }
         else if (Adminpassword.getPassword().equals("")) {
-            JOptionPane.showMessageDialog(this, "password must not be empty");
+            JOptionPane.showMessageDialog(this, "Admin password must not be empty");
             Adminpassword.requestFocus();
         }
-        else{
+        else if (confirmuserpassword.getPassword().equals("")) {
+            JOptionPane.showMessageDialog(this, "you have to confirm your password");
+            confirmuserpassword.requestFocus();
+         }
+        else if (Adminusername.getText().contains("ragahv@123")&& Adminpassword.getText().contains("abc@123")) {
+            JOptionPane.showMessageDialog(this, "SOMTHING WENT WRONG");
         }
+         
+    else{        
+    PreparedStatement pst=null;
+    Statement st=null;
+    ResultSet rs=null;
+    java.sql.Connection con=null;
+        try {
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            con=DriverManager.getConnection("jdbc:mysql://localhost:3306/hotels","root","123456");
+           // st=con.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE,ResultSet.CONCUR_READ_ONLY);
+            pst=con.prepareStatement("select * from loginpage where username=?");
+            pst.setString(1, newusername.getText());
+            rs=pst.executeQuery();
+            if(rs.next()){
+                JOptionPane.showMessageDialog(this,"Username already exists");
+                newusername.requestFocus();
+            }
+            else{
+                pst=con.prepareStatement("insert into loginpage(username,userpassword)values(?,?)");
+                pst.setString(1, newusername.getText());
+                pst.setString(2, newuserpassword.getText());
+                pst.executeUpdate();
+                JOptionPane.showMessageDialog(this, "new user added");
+            }
+}
+            catch (ClassNotFoundException | SQLException ex) {
+           //Logger.getLogger(Record.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+                    }
     }//GEN-LAST:event_newsingupActionPerformed
 
     private void AdminusernameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AdminusernameActionPerformed
