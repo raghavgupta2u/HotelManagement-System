@@ -197,8 +197,10 @@ public class SingupPage extends javax.swing.JFrame {
     private void loginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginActionPerformed
         // TODO add your handling code here:
         LoginPage backtologin = new LoginPage();
+        int yes=JOptionPane.showConfirmDialog(this,"Are you sure? all your data will be lost","Exit",JOptionPane.YES_NO_OPTION,JOptionPane.QUESTION_MESSAGE);
+        if(yes==JOptionPane.YES_OPTION)
         backtologin.show();
-        dispose();
+        
     }//GEN-LAST:event_loginActionPerformed
 
     private void newsingupActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_newsingupActionPerformed
@@ -227,8 +229,8 @@ public class SingupPage extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Admin password must not be empty");
             Adminpassword.requestFocus();
         }
-        else if (Adminusername.getText().contains("ragahv@123")&& Adminpassword.getText().contains("abc@123")) {
-            JOptionPane.showMessageDialog(this, "SOMTHING WENT WRONG");
+        else if (!(Adminusername.getText().contains("ragahv@123")&& Adminpassword.getText().contains("abc@123"))) {
+            JOptionPane.showMessageDialog(this, "ADMIN USERNAME OR ADMIN PASSWORD IS WRONG");
         }
          
     else{        
