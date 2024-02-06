@@ -207,27 +207,26 @@ public class SingupPage extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "username must not be empty");
             newusername.requestFocus();
         }
-        else if (newuserpassword.getPassword().equals("")) {
+        else if (newuserpassword.getText().equals("")) {
             JOptionPane.showMessageDialog(this, "password must not be empty");
             newuserpassword.requestFocus();
         }
-        
-        else if (!(new String(newuserpassword.getPassword()).equals(new String (confirmuserpassword.getPassword())))) {
+        else if (confirmuserpassword.getText().equals("")) {
+            JOptionPane.showMessageDialog(this, "you have to confirm your password");
+            confirmuserpassword.requestFocus();
+         }
+        else if (!(new String(newuserpassword.getText()).equals(new String (confirmuserpassword.getText())))) {
             JOptionPane.showMessageDialog(this, "your password does not match!");
         }
-        
+     
         else if (Adminusername.getText().equals("")) {
             JOptionPane.showMessageDialog(this, "Admin username must not be empty");
             Adminusername.requestFocus();
         }
-        else if (Adminpassword.getPassword().equals("")) {
+        else if (Adminpassword.getText().equals("")) {
             JOptionPane.showMessageDialog(this, "Admin password must not be empty");
             Adminpassword.requestFocus();
         }
-        else if (confirmuserpassword.getPassword().equals("")) {
-            JOptionPane.showMessageDialog(this, "you have to confirm your password");
-            confirmuserpassword.requestFocus();
-         }
         else if (Adminusername.getText().contains("ragahv@123")&& Adminpassword.getText().contains("abc@123")) {
             JOptionPane.showMessageDialog(this, "SOMTHING WENT WRONG");
         }
@@ -240,7 +239,7 @@ public class SingupPage extends javax.swing.JFrame {
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
             con=DriverManager.getConnection("jdbc:mysql://localhost:3306/hotels","root","123456");
-           // st=con.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE,ResultSet.CONCUR_READ_ONLY);
+           st=con.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE,ResultSet.CONCUR_READ_ONLY);
             pst=con.prepareStatement("select * from loginpage where username=?");
             pst.setString(1, newusername.getText());
             rs=pst.executeQuery();
@@ -249,7 +248,7 @@ public class SingupPage extends javax.swing.JFrame {
                 newusername.requestFocus();
             }
             else{
-                pst=con.prepareStatement("insert into loginpage(username,userpassword)values(?,?)");
+                pst=con.prepareStatement("insert into loginpage(username,password)values(?,?)");
                 pst.setString(1, newusername.getText());
                 pst.setString(2, newuserpassword.getText());
                 pst.executeUpdate();
