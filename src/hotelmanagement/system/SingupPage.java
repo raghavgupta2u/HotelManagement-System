@@ -192,6 +192,7 @@ public class SingupPage extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void loginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginActionPerformed
@@ -229,7 +230,7 @@ public class SingupPage extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Admin password must not be empty");
             Adminpassword.requestFocus();
         }
-        else if (!(Adminusername.getText().contains("ragahv@123")&& Adminpassword.getText().contains("abc@123"))) {
+        else if (!(Adminusername.getText().contains("raghav@123")&& Adminpassword.getText().contains("abc@123"))) {
             JOptionPane.showMessageDialog(this, "ADMIN USERNAME OR ADMIN PASSWORD IS WRONG");
         }
          
