@@ -250,8 +250,7 @@ public class ManagRoom extends javax.swing.JFrame {
           if(Textprice.getText().equals(""))
             JOptionPane.showMessageDialog(this, "All Field id Required");
         else{
-                String type=ComboBoxroomtype.getItemAt(ComboBoxroomtype.getSelectedIndex());
-                String bed=ComboBoxbedtype.getItemAt(ComboBoxbedtype.getSelectedIndex());
+                
                 PreparedStatement pst;
                 java.sql.Connection con;
                 try {
@@ -260,8 +259,8 @@ public class ManagRoom extends javax.swing.JFrame {
                     //pst=con.prepareStatement("update room set price="+txtprice.getText()+","+"roomtype="+type+" where roomnumber="+s2);
                     pst=con.prepareStatement("update room set price=?,roomtype=?,bed=? where roomnumber=?");
                     pst.setString(1,Textprice.getText() );
-                    pst.setString(2,type);
-                    pst.setString(3,bed);
+                    pst.setString(2,ComboBoxroomtype.getItemAt(ComboBoxroomtype.getSelectedIndex()));
+                    pst.setString(3,ComboBoxbedtype.getItemAt(ComboBoxbedtype.getSelectedIndex()));
                     pst.setString(4,s2);
                     pst.executeUpdate();
                     JOptionPane.showMessageDialog(this, "Room Updated");
