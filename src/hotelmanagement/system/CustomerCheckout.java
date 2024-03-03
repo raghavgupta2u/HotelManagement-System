@@ -201,6 +201,8 @@ public class CustomerCheckout extends javax.swing.JFrame {
         jLabel28.setText("Check out Date");
         jLabel28.setToolTipText("");
 
+        TextCheckinDate.setEditable(false);
+
         Recordtable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null, null, null, null, null},
@@ -231,6 +233,11 @@ public class CustomerCheckout extends javax.swing.JFrame {
         CHECKOUT.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         CHECKOUT.setForeground(new java.awt.Color(255, 255, 255));
         CHECKOUT.setText("Check Out Now");
+        CHECKOUT.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CHECKOUTActionPerformed(evt);
+            }
+        });
 
         ClearButton.setBackground(new java.awt.Color(0, 51, 51));
         ClearButton.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
@@ -403,6 +410,7 @@ public class CustomerCheckout extends javax.swing.JFrame {
         Textnumber.setText("");
         TextPriceParDay.setText("");
         TextCheckinDate.setText("");
+        TextAdhar.setText("");
         PreparedStatement pst = null;
         Statement st = null;
         ResultSet rs = null;
@@ -418,13 +426,14 @@ public class CustomerCheckout extends javax.swing.JFrame {
                 Textnumber.setText(rs.getString("mobile"));
                 TextCheckinDate.setText(rs.getString("checkin"));
                 TextPriceParDay.setText(rs.getString("Price"));
+                TextAdhar.setText(rs.getString("id"));
             }
 
             ZoneId z=ZoneId.of("Asia/Colombo");
             LocalDate todays=LocalDate.now(z);
             String s1=todays.toString();
             SimpleDateFormat sim=new SimpleDateFormat("yyyy-MM-dd");
-            String f1=rs.getString("date");
+            String f1=rs.getString("checkin");
             String f2=s1;
             try{
                 Date d1=sim.parse(f1);
@@ -482,6 +491,8 @@ public class CustomerCheckout extends javax.swing.JFrame {
         Textnumber.setText(RecordTable.getValueAt(SelectedRows, 1).toString());
         TextCheckinDate.setText(RecordTable.getValueAt(SelectedRows, 6).toString());
         TextPriceParDay.setText(RecordTable.getValueAt(SelectedRows, 8).toString());
+        TextAdhar.setText(RecordTable.getValueAt(SelectedRows, 2).toString());
+        TextRoomnumber.setText(RecordTable.getValueAt(SelectedRows, 3).toString());
 
         ZoneId z=ZoneId.of("Asia/Colombo");
         LocalDate todays=LocalDate.now(z);
@@ -519,6 +530,50 @@ public class CustomerCheckout extends javax.swing.JFrame {
         TextAmount.setText("");
         TextRoomnumber.setText("");
     }//GEN-LAST:event_ClearButtonActionPerformed
+
+    private void CHECKOUTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CHECKOUTActionPerformed
+        // TODO add your handling code here:
+       if (Textname.getText().equals("")) {
+            JOptionPane.showMessageDialog(this, "Please Enter Room Number And Search it,Then Check Out Customer");
+        } else {
+            try {
+                PreparedStatement pst = null;
+                Class.forName("com.mysql.cj.jdbc.Driver");
+                java.sql.Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/hotels", "root", "123456");
+                pst = con.prepareStatement("update customer set Status=? where Roomnumber=?");
+                pst.setString(1, "check out");
+                pst.setString(2, TextRoomnumber.getText());
+                pst.executeUpdate();
+                pst = con.prepareStatement("update customer set amount=?,check out=?,noofday=? where Roomnumber=? AND checkin=?");
+                pst.setString(1, TextAmount.getText());
+                pst.setString(2, outdate.getText());
+                pst.setString(3, TextNoofdays.getText());
+                pst.setString(4, TextRoomnumber.getText());
+                pst.setString(5, TextCheckinDate.getText());
+                pst.executeUpdate();
+                pst = con.prepareStatement("update room set status=? where roomnumber=?");
+                pst.setString(1, "NOT BOOKED");
+                pst.setString(2, TextRoomnumber.getText());
+                pst.executeUpdate();
+                //JOptionPane.showMessageDialog(this,"Check Out Successfully\n Goto to Cutomer Bill Details menu and Print Bill");
+                int yes=JOptionPane.showConfirmDialog(this,"Check out Successfully.\nDo you want to see & print bill?","Check outed",JOptionPane.YES_NO_OPTION);
+                if(JOptionPane.YES_OPTION==yes)
+                    new Customerbilling().setVisible(true);
+                else{
+                s();
+                Textname.setText("");
+                Textnumber.setText("");
+                TextCheckinDate.setText("");
+                TextPriceParDay.setText("");
+                TextNoofdays.setText("");
+                TextAmount.setText("");
+                TextRoomnumber.setText("");
+                        }
+            } catch (ClassNotFoundException | SQLException e) {
+            }
+
+        } 
+    }//GEN-LAST:event_CHECKOUTActionPerformed
 
     /**
      * @param args the command line arguments

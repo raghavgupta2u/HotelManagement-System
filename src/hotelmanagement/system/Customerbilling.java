@@ -1,22 +1,81 @@
-package hotelmanagement.system;
-
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
+package hotelmanagement.system;
+
+import com.mysql.cj.jdbc.result.ResultSetMetaData;
+import java.beans.Statement;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Vector;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
  * @author w
  */
-public class billing extends javax.swing.JFrame {
-
+public class Customerbilling extends javax.swing.JFrame {
+static String idd;
     /**
-     * Creates new form billing
+     * Creates new form Customerbilling
      */
-    public billing() {
+    public Customerbilling() {
         initComponents();
+        SimpleDateFormat d=new SimpleDateFormat("yyyy-MM-dd");
+        Date date=new Date();
+        TextDate.setText(d.format(date));
+        s();
     }
+    
+     public void s() {
+
+        Statement st = null;
+        PreparedStatement pst = null;
+        ResultSet rs = null;
+        java.sql.Connection con = null;
+        int q, i;
+
+        try {
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            con = DriverManager.getConnection("jdbc:mysql://localhost:3306/hotels", "root", "123456");
+            pst = con.prepareStatement("Select * from customer where Status=?");
+            pst.setString(1, "check out");
+            rs = pst.executeQuery();
+            ResultSetMetaData stData = (ResultSetMetaData) rs.getMetaData();
+            q = stData.getColumnCount();
+            DefaultTableModel RecordTable = (DefaultTableModel) jTable3.getModel();
+            RecordTable.setRowCount(0);
+            while (rs.next()) {
+                Vector columnData = new Vector();
+                for (i = 1; i <= q; i++) {
+                    columnData.add(rs.getString("Bill Id"));
+                    columnData.add(rs.getString("roomnumber"));
+                    columnData.add(rs.getString("name"));
+                    columnData.add(rs.getString("mobile"));
+                    columnData.add(rs.getString("nationality"));
+                    columnData.add(rs.getString("gender"));
+                    columnData.add(rs.getString("id"));
+                    columnData.add(rs.getString("date"));
+                    columnData.add(rs.getString("outdate"));
+                    columnData.add(rs.getString("bed"));
+                    columnData.add(rs.getString("roomtype"));
+                    columnData.add(rs.getString("price"));
+                    columnData.add(rs.getString("days"));
+                    columnData.add(rs.getString("amount"));
+
+                }
+                RecordTable.addRow(columnData);
+            }
+        } catch (Exception e) {
+
+        }
+     }
+        
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -33,10 +92,10 @@ public class billing extends javax.swing.JFrame {
         jLabel32 = new javax.swing.JLabel();
         jScrollPane3 = new javax.swing.JScrollPane();
         jTable3 = new javax.swing.JTable();
-        jTextField19 = new javax.swing.JTextField();
+        TextDate = new javax.swing.JTextField();
         jLabel33 = new javax.swing.JLabel();
-        jButton8 = new javax.swing.JButton();
         jButton9 = new javax.swing.JButton();
+        SearchButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -56,36 +115,46 @@ public class billing extends javax.swing.JFrame {
         jTable3.setForeground(new java.awt.Color(255, 255, 255));
         jTable3.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null}
+                {null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "Bill ID", "Room Number", "Customer Number", "Mobile Number", "Email ID", "Adhar Number", "Check in Date", "Check out Date", "Price", "Number of Day", "Total Amount"
+                "Bill ID", "Room No", "Number", "Mobile No", "Adhar No", "Check in Date", "Check out Date", "Price", "Number of Day", "Total Amount"
             }
         ));
+        jTable3.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTable3MouseClicked(evt);
+            }
+        });
         jScrollPane3.setViewportView(jTable3);
 
         jLabel33.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel33.setForeground(new java.awt.Color(0, 51, 51));
         jLabel33.setText("Search By Check-Out Date");
 
-        jButton8.setBackground(new java.awt.Color(0, 51, 51));
-        jButton8.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jButton8.setForeground(new java.awt.Color(255, 255, 255));
-        jButton8.setText("Search");
-        jButton8.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton8ActionPerformed(evt);
-            }
-        });
-
         jButton9.setBackground(new java.awt.Color(0, 51, 51));
         jButton9.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jButton9.setForeground(new java.awt.Color(255, 255, 255));
         jButton9.setText("Refresh");
         jButton9.setToolTipText("");
+        jButton9.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton9ActionPerformed(evt);
+            }
+        });
+
+        SearchButton.setBackground(new java.awt.Color(0, 51, 51));
+        SearchButton.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        SearchButton.setForeground(new java.awt.Color(255, 255, 255));
+        SearchButton.setText("Search");
+        SearchButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                SearchButtonActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel8Layout = new javax.swing.GroupLayout(jPanel8);
         jPanel8.setLayout(jPanel8Layout);
@@ -99,10 +168,10 @@ public class billing extends javax.swing.JFrame {
                 .addGap(166, 166, 166)
                 .addComponent(jLabel33)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jTextField19, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(TextDate, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(30, 30, 30)
-                .addComponent(jButton8)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(SearchButton)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButton9)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel8Layout.createSequentialGroup()
@@ -123,10 +192,10 @@ public class billing extends javax.swing.JFrame {
                 .addComponent(jLabel32)
                 .addGap(18, 18, 18)
                 .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField19, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(TextDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel33)
-                    .addComponent(jButton8)
-                    .addComponent(jButton9))
+                    .addComponent(jButton9)
+                    .addComponent(SearchButton))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(19, 19, 19))
@@ -171,9 +240,69 @@ public class billing extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
+    private void SearchButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SearchButtonActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton8ActionPerformed
+        Statement st = null;
+        PreparedStatement pst = null;
+        ResultSet rs = null;
+        java.sql.Connection con = null;
+        int q, i;
+
+        try {
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            con = DriverManager.getConnection("jdbc:mysql://localhost:3306/hotels", "root", "123456");
+            pst = con.prepareStatement("Select * from customer where status=? AND outdate=?");
+            pst.setString(1, "check out");
+            pst.setString(2,TextDate.getText());
+            rs = pst.executeQuery();
+            ResultSetMetaData stData = (ResultSetMetaData) rs.getMetaData();
+            q = stData.getColumnCount();
+            DefaultTableModel RecordTable = (DefaultTableModel) jTable3.getModel();
+            RecordTable.setRowCount(0);
+            while (rs.next()) {
+                Vector columnData = new Vector();
+                for (i = 1; i <= q; i++) {
+                    columnData.add(rs.getString("billid"));
+                    columnData.add(rs.getString("roomnumber"));
+                    columnData.add(rs.getString("name"));
+                    columnData.add(rs.getString("mobile"));
+                    columnData.add(rs.getString("nationality"));
+                    columnData.add(rs.getString("gender"));
+                    columnData.add(rs.getString("email"));
+                    columnData.add(rs.getString("id"));
+                    columnData.add(rs.getString("address"));
+                    columnData.add(rs.getString("date"));
+                    columnData.add(rs.getString("outdate"));
+                    columnData.add(rs.getString("bed"));
+                    columnData.add(rs.getString("roomtype"));
+                    columnData.add(rs.getString("price"));
+                    columnData.add(rs.getString("days"));
+                    columnData.add(rs.getString("amount"));
+
+                }
+                RecordTable.addRow(columnData);
+            }
+        } catch (Exception e) {
+                JOptionPane.showMessageDialog(this,"Record Not Found.");
+        }
+             
+    }//GEN-LAST:event_SearchButtonActionPerformed
+
+    private void jTable3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable3MouseClicked
+        // TODO add your handling code here:
+        if(evt.getClickCount()==2){
+   
+    DefaultTableModel RecordTable= (DefaultTableModel) jTable3.getModel();
+    int SelectedRows=jTable3.getSelectedRow();
+    idd=((String) RecordTable.getValueAt(SelectedRows,0));
+     new GenerateBill().setVisible(true);
+}              
+        
+    }//GEN-LAST:event_jTable3MouseClicked
+
+    private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
+        s();        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton9ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -192,27 +321,28 @@ public class billing extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(billing.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Customerbilling.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(billing.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Customerbilling.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(billing.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Customerbilling.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(billing.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Customerbilling.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new billing().setVisible(true);
+                new Customerbilling().setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton SearchButton;
+    private javax.swing.JTextField TextDate;
     private javax.swing.JPanel billing;
-    private javax.swing.JButton jButton8;
     private javax.swing.JButton jButton9;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel32;
@@ -220,6 +350,5 @@ public class billing extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel8;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JTable jTable3;
-    private javax.swing.JTextField jTextField19;
     // End of variables declaration//GEN-END:variables
 }
