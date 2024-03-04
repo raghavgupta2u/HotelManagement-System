@@ -417,7 +417,7 @@ public class CustomerCheckout extends javax.swing.JFrame {
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
             java.sql.Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/hotels", "root", "123456");
-            pst = con.prepareStatement("select customername,mobile,checkin,Price from customer where Roomnumber=? AND Status=?");
+            pst = con.prepareStatement("Select * from customer where Roomnumber=? AND Status=?");
             pst.setString(1, TextRoomnumber.getText().trim());
             pst.setString(2, "NULL");
             rs = pst.executeQuery();
