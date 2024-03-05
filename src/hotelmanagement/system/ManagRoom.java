@@ -311,7 +311,7 @@ public class ManagRoom extends javax.swing.JFrame {
                         pst.setString(2, ComboBoxroomtype.getItemAt(ComboBoxroomtype.getSelectedIndex()));
                         pst.setString(3, ComboBoxbedtype.getItemAt(ComboBoxbedtype.getSelectedIndex()));
                         pst.setString(4, Textprice.getText());
-                        pst.setString(5, "Not Booked");                       
+                        pst.setString(5, "NOT BOOKED");                       
                         pst.executeUpdate();
                         JOptionPane.showMessageDialog(this, "Room Added");
                         Manageroom1();
