@@ -24,14 +24,14 @@ import javax.swing.table.DefaultTableModel;
  * @author w
  */
 public class CustomerCheckout extends javax.swing.JFrame {
-   int days;
+   
    double pri;
     /**
      * Creates new form CustomerCheckout
      */
     public CustomerCheckout() {
         initComponents();
-        SimpleDateFormat date = new SimpleDateFormat("yyyy/MM/dd ");
+        SimpleDateFormat date = new SimpleDateFormat("yyyy-MM-dd ");
         Date d = new Date();
         outdate.setText(date.format(d));
         s();
@@ -418,7 +418,7 @@ public class CustomerCheckout extends javax.swing.JFrame {
             Class.forName("com.mysql.cj.jdbc.Driver");
             java.sql.Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/hotels", "root", "123456");
             pst = con.prepareStatement("Select * from customer where Roomnumber=? AND Status=?");
-            pst.setString(1, TextRoomnumber.getText().trim());
+            pst.setString(1, TextRoomnumber.getText());
             pst.setString(2, "NULL");
             rs = pst.executeQuery();
             if (rs.next()) {
@@ -429,9 +429,7 @@ public class CustomerCheckout extends javax.swing.JFrame {
                 TextAdhar.setText(rs.getString("id"));
             }
 
-            ZoneId z=ZoneId.of("Asia/Colombo");
-            LocalDate todays=LocalDate.now(z);
-            String s1=todays.toString();
+            String s1= outdate.getText();
             SimpleDateFormat sim=new SimpleDateFormat("yyyy-MM-dd");
             String f1=rs.getString("checkin");
             String f2=s1;
@@ -440,10 +438,12 @@ public class CustomerCheckout extends javax.swing.JFrame {
                 Date d2=sim.parse(f2);
                 long diff=d2.getTime()-d1.getTime();
                 int days=(int)(diff/(1000*24*60*60));
-                if(days==0)
-                TextAmount.setText("1");
-                else
-                TextCheckinDate.setText(String.valueOf(days));
+                if(days==0){
+                   days=1;
+                }
+                else{
+                TextNoofdays.setText(String.valueOf(days));
+                }
                 double p=Double.parseDouble(rs.getString("Price"));
                 double pri=days*p;
                 if(days==0)
@@ -451,7 +451,7 @@ public class CustomerCheckout extends javax.swing.JFrame {
                 else
                 TextAmount.setText(String.valueOf(pri));
             }catch(Exception e){
-            }
+          }
         } catch (ClassNotFoundException | SQLException ex) {
             TextCheckinDate.setText("");
             TextAmount.setText("");
@@ -483,8 +483,7 @@ public class CustomerCheckout extends javax.swing.JFrame {
 
     private void RecordtableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_RecordtableMouseClicked
         // TODO add your handling code here:
-        int days;
-        double pri;
+        
         DefaultTableModel RecordTable = (DefaultTableModel) Recordtable.getModel();
         int SelectedRows = Recordtable.getSelectedRow();
         Textname.setText(RecordTable.getValueAt(SelectedRows, 0).toString());
@@ -494,9 +493,8 @@ public class CustomerCheckout extends javax.swing.JFrame {
         TextAdhar.setText(RecordTable.getValueAt(SelectedRows, 2).toString());
         TextRoomnumber.setText(RecordTable.getValueAt(SelectedRows, 3).toString());
 
-        ZoneId z=ZoneId.of("Asia/Colombo");
-        LocalDate todays=LocalDate.now(z);
-        String s1=todays.toString();
+        
+        String s1= outdate.getText();
         SimpleDateFormat sim=new SimpleDateFormat("yyyy-MM-dd");
         String f1=RecordTable.getValueAt(SelectedRows, 6).toString();
         String f2=s1;
@@ -504,13 +502,16 @@ public class CustomerCheckout extends javax.swing.JFrame {
             Date d1=sim.parse(f1);
             Date d2=sim.parse(f2);
             long diff=d2.getTime()-d1.getTime();
-            days=(int)(diff/(1000*24*60*60));
-            if(days==0)
-            TextCheckinDate.setText("1");
-            else
-            TextCheckinDate.setText(String.valueOf(days));
+            int days=(int)(diff/(1000*24*60*60));
+            if(days==0){
+            TextNoofdays.setText("1");
+            }
+            else{
+            TextNoofdays.setText(String.valueOf(days));
+            }
             double p=Double.parseDouble(RecordTable.getValueAt(SelectedRows,8).toString());
             pri=days*p;
+            
             if(days==0)
             TextAmount.setText(String.valueOf(p));
             else
@@ -533,6 +534,7 @@ public class CustomerCheckout extends javax.swing.JFrame {
 
     private void CHECKOUTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CHECKOUTActionPerformed
         // TODO add your handling code here:
+        
        if (Textname.getText().equals("")) {
             JOptionPane.showMessageDialog(this, "Please Enter Room Number And Search it,Then Check Out Customer");
         } else {
@@ -540,21 +542,25 @@ public class CustomerCheckout extends javax.swing.JFrame {
                 PreparedStatement pst = null;
                 Class.forName("com.mysql.cj.jdbc.Driver");
                 java.sql.Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/hotels", "root", "123456");
-                pst = con.prepareStatement("update customer set Status=? where Roomnumber=?");
-                pst.setString(1, "check out");
-                pst.setString(2, TextRoomnumber.getText());
-                pst.executeUpdate();
-                pst = con.prepareStatement("update customer set amount=?,check out=?,noofday=? where Roomnumber=? AND checkin=?");
+                
+                pst = con.prepareStatement("insert into customer(amount,check out,noofday)values(?,?,?)");
                 pst.setString(1, TextAmount.getText());
                 pst.setString(2, outdate.getText());
                 pst.setString(3, TextNoofdays.getText());
-                pst.setString(4, TextRoomnumber.getText());
-                pst.setString(5, TextCheckinDate.getText());
+                pst.executeQuery();
+           
+                pst = con.prepareStatement("update customer set Status=? where Roomnumber=?");
+                pst.setString(1, "CHECK OUT");
+                pst.setString(2, TextRoomnumber.getText());
                 pst.executeUpdate();
+                
                 pst = con.prepareStatement("update room set status=? where roomnumber=?");
                 pst.setString(1, "NOT BOOKED");
                 pst.setString(2, TextRoomnumber.getText());
                 pst.executeUpdate();
+                
+                
+               
                 //JOptionPane.showMessageDialog(this,"Check Out Successfully\n Goto to Cutomer Bill Details menu and Print Bill");
                 int yes=JOptionPane.showConfirmDialog(this,"Check out Successfully.\nDo you want to see & print bill?","Check outed",JOptionPane.YES_NO_OPTION);
                 if(JOptionPane.YES_OPTION==yes)
