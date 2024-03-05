@@ -335,7 +335,7 @@ public class ManagRoom extends javax.swing.JFrame {
 
     private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
         // TODO add your handling code here:
-         if(evt.getClickCount()==2){
+         if(evt.getClickCount()==1){
         String check=JOptionPane.showInputDialog(this,"If you want to Delete this Record Write here to Delete\nIf you want to Update this Record then Write here update");
         if(check.equalsIgnoreCase("delete")){
             DefaultTableModel dmodel=(DefaultTableModel) jTable1.getModel();
