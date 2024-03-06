@@ -64,7 +64,6 @@ public class CustomerCheckout extends javax.swing.JFrame {
                     columnData.add(rs.getString("bedtype"));
                     columnData.add(rs.getString("Roomtype"));
                     columnData.add(rs.getString("checkin"));
-                    columnData.add(rs.getString("bill"));
                     columnData.add(rs.getString("Price"));
                     
 
@@ -205,17 +204,17 @@ public class CustomerCheckout extends javax.swing.JFrame {
 
         Recordtable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null}
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "Customer", "mobile number", "Adhar Number", "Room Number", "Bed Type", "Room Type", "Check in Date", "Bill id", "price per day"
+                "Customer", "mobile number", "Adhar Number", "Room Number", "Bed Type", "Room Type", "Check in Date", "price per day"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false, false, false
+                false, false, false, false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -489,7 +488,7 @@ public class CustomerCheckout extends javax.swing.JFrame {
         Textname.setText(RecordTable.getValueAt(SelectedRows, 0).toString());
         Textnumber.setText(RecordTable.getValueAt(SelectedRows, 1).toString());
         TextCheckinDate.setText(RecordTable.getValueAt(SelectedRows, 6).toString());
-        TextPriceParDay.setText(RecordTable.getValueAt(SelectedRows, 8).toString());
+        TextPriceParDay.setText(RecordTable.getValueAt(SelectedRows, 7).toString());
         TextAdhar.setText(RecordTable.getValueAt(SelectedRows, 2).toString());
         TextRoomnumber.setText(RecordTable.getValueAt(SelectedRows, 3).toString());
 
@@ -509,7 +508,7 @@ public class CustomerCheckout extends javax.swing.JFrame {
             else{
             TextNoofdays.setText(String.valueOf(days));
             }
-            double p=Double.parseDouble(RecordTable.getValueAt(SelectedRows,8).toString());
+            double p=Double.parseDouble(RecordTable.getValueAt(SelectedRows,7).toString());
             pri=days*p;
             
             if(days==0)
@@ -542,17 +541,29 @@ public class CustomerCheckout extends javax.swing.JFrame {
                 PreparedStatement pst = null;
                 Class.forName("com.mysql.cj.jdbc.Driver");
                 java.sql.Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/hotels", "root", "123456");
+              
+                pst=con.prepareStatement("insert into customercheckout(customername,mobile,id,Price,amount,checkout,noofday,Roomnumber,checkin)values(?,?,?,?,?,?,?,?,?)");
+                pst.setString(1, Textname.getText());
+                pst.setString(2, Textnumber.getText());
+                pst.setString(3, TextAdhar.getText());
+                pst.setString(4, TextPriceParDay.getText());
+/*                pst.setString(6, Textname.getText());
+                pst.setString(7, Textname.getText());
+                pst.setString(8, Textname.getText());
+                pst.setString(9, Textname.getText());*/
+                pst.setString(5, TextAmount.getText());
+                pst.setString(6, outdate.getText());
+                pst.setString(7, TextNoofdays.getText());
+                pst.setString(8, TextRoomnumber.getText());
+                pst.setString(9, TextCheckinDate.getText());
+                pst.executeUpdate();
                 
-                pst = con.prepareStatement("insert into customer(amount,check out,noofday)values(?,?,?)");
-                pst.setString(1, TextAmount.getText());
-                pst.setString(2, outdate.getText());
-                pst.setString(3, TextNoofdays.getText());
-                pst.executeQuery();
-           
                 pst = con.prepareStatement("update customer set Status=? where Roomnumber=?");
                 pst.setString(1, "CHECK OUT");
                 pst.setString(2, TextRoomnumber.getText());
                 pst.executeUpdate();
+                
+                
                 
                 pst = con.prepareStatement("update room set status=? where roomnumber=?");
                 pst.setString(1, "NOT BOOKED");
@@ -567,6 +578,7 @@ public class CustomerCheckout extends javax.swing.JFrame {
                     new Customerbilling().setVisible(true);
                 else{
                 s();
+                TextAdhar.setText("");
                 Textname.setText("");
                 Textnumber.setText("");
                 TextCheckinDate.setText("");
