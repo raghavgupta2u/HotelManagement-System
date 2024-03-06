@@ -542,7 +542,7 @@ public class CustomerCheckout extends javax.swing.JFrame {
                 Class.forName("com.mysql.cj.jdbc.Driver");
                 java.sql.Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/hotels", "root", "123456");
               
-                pst=con.prepareStatement("insert into customercheckout(customername,mobile,id,Price,amount,checkout,noofday,Roomnumber,checkin)values(?,?,?,?,?,?,?,?,?)");
+                pst=con.prepareStatement("insert into customercheckout(customername,mobile,id,Price,amount,checkout,noofday,Roomnumber,checkin,status)values(?,?,?,?,?,?,?,?,?)");
                 pst.setString(1, Textname.getText());
                 pst.setString(2, Textnumber.getText());
                 pst.setString(3, TextAdhar.getText());
@@ -556,6 +556,7 @@ public class CustomerCheckout extends javax.swing.JFrame {
                 pst.setString(7, TextNoofdays.getText());
                 pst.setString(8, TextRoomnumber.getText());
                 pst.setString(9, TextCheckinDate.getText());
+                pst.setString(10, "CHECK OUT");
                 pst.executeUpdate();
                 
                 pst = con.prepareStatement("update customer set Status=? where Roomnumber=?");

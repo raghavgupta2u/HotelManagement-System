@@ -38,39 +38,53 @@ static String idd;
         PreparedStatement pst = null;
         ResultSet rs = null;
         java.sql.Connection con = null;
-        int q, i;
+        int f,q, i;
 
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
             con = DriverManager.getConnection("jdbc:mysql://localhost:3306/hotels", "root", "123456");
             pst = con.prepareStatement("Select * from customer where Status=?");
-            pst.setString(1, "check out");
+            pst.setString(1, "CHECK OUT");
             rs = pst.executeQuery();
             ResultSetMetaData stData = (ResultSetMetaData) rs.getMetaData();
-            q = stData.getColumnCount();
+            f = stData.getColumnCount();
             DefaultTableModel RecordTable = (DefaultTableModel) jTable3.getModel();
             RecordTable.setRowCount(0);
             while (rs.next()) {
                 Vector columnData = new Vector();
-                for (i = 1; i <= q; i++) {
-                    columnData.add(rs.getString("Bill Id"));
-                    columnData.add(rs.getString("roomnumber"));
-                    columnData.add(rs.getString("name"));
+                for (i = 1; i <= f; i++) {
+                    columnData.add(rs.getString("customername"));
                     columnData.add(rs.getString("mobile"));
-                    columnData.add(rs.getString("nationality"));
                     columnData.add(rs.getString("gender"));
                     columnData.add(rs.getString("id"));
-                    columnData.add(rs.getString("date"));
-                    columnData.add(rs.getString("outdate"));
-                    columnData.add(rs.getString("bed"));
-                    columnData.add(rs.getString("roomtype"));
+                    columnData.add(rs.getString("nationality"));
+                    columnData.add(rs.getString("checkin"));
+                    columnData.add(rs.getString("Roomnumber"));
+                    columnData.add(rs.getString("bedtype"));
+                    columnData.add(rs.getString("Roomtype"));
                     columnData.add(rs.getString("price"));
-                    columnData.add(rs.getString("days"));
-                    columnData.add(rs.getString("amount"));
-
-                }
+                    }
                 RecordTable.addRow(columnData);
             }
+            
+            /*pst = con.prepareStatement("Select * from customercheckout where status=?");
+            pst.setString(1, "CHECK OUT");
+            rs = pst.executeQuery();
+            ResultSetMetaData mydata = (ResultSetMetaData) rs.getMetaData();
+            q = mydata.getColumnCount();
+            DefaultTableModel RT = (DefaultTableModel) jTable1.getModel();
+            RT.setRowCount(0);
+            while (rs.next()) {
+                Vector columnData = new Vector();
+                for (i = 0; i <= q; i++) {
+                    columnData.add(rs.getString("amount"));
+                    columnData.add(rs.getString("checkout"));
+                    columnData.add(rs.getString("bill"));
+                    columnData.add(rs.getString("noofday"));
+                    }
+                RecordTable.addRow(columnData);
+            }*/
+            
         } catch (Exception e) {
 
         }
@@ -96,6 +110,8 @@ static String idd;
         jLabel33 = new javax.swing.JLabel();
         jButton9 = new javax.swing.JButton();
         SearchButton = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTable1 = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -121,7 +137,7 @@ static String idd;
                 {null, null, null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "Bill ID", "Room No", "Number", "Mobile No", "Adhar No", "Check in Date", "Check out Date", "Price", "Number of Day", "Total Amount"
+                "Name", "Mobile No", "Gender", "Adhar No", "Nationality", "Check in Date", "Room No", "Bed Type", "Room Type", "Price"
             }
         ));
         jTable3.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -156,32 +172,49 @@ static String idd;
             }
         });
 
+        jTable1.setBackground(new java.awt.Color(0, 51, 51));
+        jTable1.setForeground(new java.awt.Color(255, 255, 255));
+        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Amount", "Check out", "bill", "noofday"
+            }
+        ));
+        jScrollPane1.setViewportView(jTable1);
+
         javax.swing.GroupLayout jPanel8Layout = new javax.swing.GroupLayout(jPanel8);
         jPanel8.setLayout(jPanel8Layout);
         jPanel8Layout.setHorizontalGroup(
             jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel8Layout.createSequentialGroup()
-                .addContainerGap(370, Short.MAX_VALUE)
-                .addComponent(jLabel10)
-                .addGap(375, 375, 375))
             .addGroup(jPanel8Layout.createSequentialGroup()
-                .addGap(166, 166, 166)
-                .addComponent(jLabel33)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(TextDate, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(30, 30, 30)
-                .addComponent(SearchButton)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton9)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel8Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel32)
-                .addGap(298, 298, 298))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel8Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 750, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel8Layout.createSequentialGroup()
+                        .addComponent(jLabel10)
+                        .addGap(375, 375, 375))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel8Layout.createSequentialGroup()
+                        .addComponent(jLabel32)
+                        .addGap(298, 298, 298))))
+            .addGroup(jPanel8Layout.createSequentialGroup()
+                .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel8Layout.createSequentialGroup()
+                        .addGap(166, 166, 166)
+                        .addComponent(jLabel33)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(TextDate, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(30, 30, 30)
+                        .addComponent(SearchButton)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jButton9)
+                        .addGap(0, 46, Short.MAX_VALUE))
+                    .addComponent(jScrollPane3, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jScrollPane1))
+                .addContainerGap())
         );
         jPanel8Layout.setVerticalGroup(
             jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -197,17 +230,19 @@ static String idd;
                     .addComponent(jButton9)
                     .addComponent(SearchButton))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(19, 19, 19))
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 262, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(13, 13, 13))
         );
 
         javax.swing.GroupLayout billingLayout = new javax.swing.GroupLayout(billing);
         billing.setLayout(billingLayout);
         billingLayout.setHorizontalGroup(
             billingLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, billingLayout.createSequentialGroup()
-                .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, 787, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(billingLayout.createSequentialGroup()
+                .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, 713, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 77, Short.MAX_VALUE))
         );
         billingLayout.setVerticalGroup(
             billingLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -246,42 +281,53 @@ static String idd;
         PreparedStatement pst = null;
         ResultSet rs = null;
         java.sql.Connection con = null;
-        int q, i;
+        int f,q, i;
 
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
             con = DriverManager.getConnection("jdbc:mysql://localhost:3306/hotels", "root", "123456");
-            pst = con.prepareStatement("Select * from customer where status=? AND outdate=?");
-            pst.setString(1, "check out");
-            pst.setString(2,TextDate.getText());
+            pst = con.prepareStatement("Select * from customer where status=?");
+            pst.setString(1, "CHECK OUT");
+           
             rs = pst.executeQuery();
             ResultSetMetaData stData = (ResultSetMetaData) rs.getMetaData();
-            q = stData.getColumnCount();
+            f = stData.getColumnCount();
             DefaultTableModel RecordTable = (DefaultTableModel) jTable3.getModel();
             RecordTable.setRowCount(0);
             while (rs.next()) {
                 Vector columnData = new Vector();
-                for (i = 1; i <= q; i++) {
-                    columnData.add(rs.getString("billid"));
-                    columnData.add(rs.getString("roomnumber"));
-                    columnData.add(rs.getString("name"));
+                for (i = 0; i <= f; i++) {
+                    columnData.add(rs.getString("customername"));
                     columnData.add(rs.getString("mobile"));
-                    columnData.add(rs.getString("nationality"));
                     columnData.add(rs.getString("gender"));
-                    columnData.add(rs.getString("email"));
                     columnData.add(rs.getString("id"));
-                    columnData.add(rs.getString("address"));
-                    columnData.add(rs.getString("date"));
-                    columnData.add(rs.getString("outdate"));
-                    columnData.add(rs.getString("bed"));
-                    columnData.add(rs.getString("roomtype"));
-                    columnData.add(rs.getString("price"));
-                    columnData.add(rs.getString("days"));
-                    columnData.add(rs.getString("amount"));
-
-                }
+                    columnData.add(rs.getString("nationality"));
+                    columnData.add(rs.getString("checkin"));
+                    columnData.add(rs.getString("Roomnumber"));
+                    columnData.add(rs.getString("bedtype"));
+                    columnData.add(rs.getString("Roomtype"));
+                    columnData.add(rs.getString("price"));   
+                 }
                 RecordTable.addRow(columnData);
             }
+            
+            /*pst = con.prepareStatement("Select * from customercheckout where status=?");
+            pst.setString(1, "CHECK OUT");
+            rs = pst.executeQuery();
+            ResultSetMetaData mydata = (ResultSetMetaData) rs.getMetaData();
+            q = mydata.getColumnCount();
+            DefaultTableModel RT = (DefaultTableModel) jTable1.getModel();
+            RT.setRowCount(10);
+            while (rs.next()) {
+                Vector columnData = new Vector();
+                for (i = 10; i <= q; i++) {
+                    columnData.add(rs.getString("amount"));
+                    columnData.add(rs.getString("checkout"));
+                    columnData.add(rs.getString("bill"));
+                    columnData.add(rs.getString("noofday"));
+                    }
+                RecordTable.addRow(columnData);
+            }*/
         } catch (Exception e) {
                 JOptionPane.showMessageDialog(this,"Record Not Found.");
         }
@@ -348,7 +394,9 @@ static String idd;
     private javax.swing.JLabel jLabel32;
     private javax.swing.JLabel jLabel33;
     private javax.swing.JPanel jPanel8;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JTable jTable1;
     private javax.swing.JTable jTable3;
     // End of variables declaration//GEN-END:variables
 }
