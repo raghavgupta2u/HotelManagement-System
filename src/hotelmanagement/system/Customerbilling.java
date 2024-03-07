@@ -30,6 +30,7 @@ static String idd;
         Date date=new Date();
         TextDate.setText(d.format(date));
         s();
+        a2();
     }
     
      public void s() {
@@ -67,7 +68,22 @@ static String idd;
                 RecordTable.addRow(columnData);
             }
             
-            /*pst = con.prepareStatement("Select * from customercheckout where status=?");
+            
+        } catch (Exception e) {
+
+        }
+     }
+       public void a2(){
+        Statement st = null;
+        PreparedStatement pst = null;
+        ResultSet rs = null;
+        java.sql.Connection con = null;
+        int q, i;
+
+        try {
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            con = DriverManager.getConnection("jdbc:mysql://localhost:3306/hotels", "root", "123456");
+            pst = con.prepareStatement("Select * from customercheckout where status=?");
             pst.setString(1, "CHECK OUT");
             rs = pst.executeQuery();
             ResultSetMetaData mydata = (ResultSetMetaData) rs.getMetaData();
@@ -82,14 +98,13 @@ static String idd;
                     columnData.add(rs.getString("bill"));
                     columnData.add(rs.getString("noofday"));
                     }
-                RecordTable.addRow(columnData);
-            }*/
+                RT.addRow(columnData);
+            }
             
         } catch (Exception e) {
 
         }
      }
-        
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -336,7 +351,7 @@ static String idd;
 
     private void jTable3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable3MouseClicked
         // TODO add your handling code here:
-        if(evt.getClickCount()==2){
+        if(evt.getClickCount()==1){
    
     DefaultTableModel RecordTable= (DefaultTableModel) jTable3.getModel();
     int SelectedRows=jTable3.getSelectedRow();

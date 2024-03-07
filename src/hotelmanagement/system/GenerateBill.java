@@ -20,7 +20,6 @@ public class GenerateBill extends javax.swing.JFrame {
     String id;
     String nm;
     String mobile;
-    String email;
     String roomnumber;
     String bed;
     String type;
@@ -41,7 +40,6 @@ public class GenerateBill extends javax.swing.JFrame {
         txtbill.setText(txtbill.getText()+"Customer Details:- \n");
         txtbill.setText(txtbill.getText()+"Name:- "+nm+"\n");
         txtbill.setText(txtbill.getText()+"Mobile Number:- "+mobile+"\n");
-        txtbill.setText(txtbill.getText()+"Email:- "+email+"\n");
         txtbill.setText(txtbill.getText()+"**********************************************************************************\n");
         txtbill.setText(txtbill.getText()+"Room Details:- \n");
         txtbill.setText(txtbill.getText()+"Room Number:- "+roomnumber+"\n");
@@ -59,21 +57,17 @@ public class GenerateBill extends javax.swing.JFrame {
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
             java.sql.Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/hotels","root","123456");
-            pst=con.prepareStatement("select * from customer where billid=?");
-            pst.setString(1,id);
+            pst=con.prepareStatement("select * from customer where Roomnumber=?");
+            pst.setString(1,"Roomnumber");
             rs=pst.executeQuery();
             if(rs.next()){
-                email=rs.getString("email");
-                nm=rs.getString("name");
+                nm=rs.getString("customername");
                 mobile=rs.getString("mobile");
-                roomnumber=rs.getString("roomnumber");
-                bed=rs.getString("bed");
-                type=rs.getString("roomtype");
-                indate=rs.getString("date");
-                outdate=rs.getString("outdate");
-                price=rs.getString("price");
-                days =rs.getString("days");
-                amount=rs.getString("amount");
+                roomnumber=rs.getString("Roomnumber");
+                bed=rs.getString("bedtype");
+                type=rs.getString("Roomtype");
+                indate=rs.getString("chechin");
+                price=rs.getString("Price");
    
             }
         
