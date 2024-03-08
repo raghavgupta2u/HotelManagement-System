@@ -17,7 +17,7 @@ import java.util.logging.Logger;
  * @author w
  */
 public class GenerateBill extends javax.swing.JFrame {
-    String id;
+    String id=Customerbilling.idd;
     String nm;
     String mobile;
     String roomnumber;
@@ -57,8 +57,8 @@ public class GenerateBill extends javax.swing.JFrame {
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
             java.sql.Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/hotels","root","123456");
-            pst=con.prepareStatement("select * from customer where Roomnumber=?");
-            pst.setString(1,"Roomnumber");
+            pst=con.prepareStatement("select * from customer where id=?");
+            pst.setString(1,id);
             rs=pst.executeQuery();
             if(rs.next()){
                 nm=rs.getString("customername");
@@ -66,7 +66,7 @@ public class GenerateBill extends javax.swing.JFrame {
                 roomnumber=rs.getString("Roomnumber");
                 bed=rs.getString("bedtype");
                 type=rs.getString("Roomtype");
-                indate=rs.getString("chechin");
+                indate=rs.getString("checkin");
                 price=rs.getString("Price");
    
             }
@@ -74,6 +74,24 @@ public class GenerateBill extends javax.swing.JFrame {
         } catch (ClassNotFoundException | SQLException ex) {
             Logger.getLogger(GenerateBill.class.getName()).log(Level.SEVERE, null, ex);
         }
+        
+         
+        try {
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            java.sql.Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/hotels","root","123456");
+            pst=con.prepareStatement("select * from customercheckout where id=?");
+            pst.setString(1,id);
+            rs=pst.executeQuery();
+            if(rs.next()){
+                days=rs.getString("noofday");
+                outdate=rs.getString("checkout");
+                amount=rs.getString("amount");
+            }
+        
+        } catch (ClassNotFoundException | SQLException ex) {
+            Logger.getLogger(GenerateBill.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
     }
     
    
