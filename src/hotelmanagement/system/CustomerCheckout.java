@@ -542,7 +542,7 @@ public class CustomerCheckout extends javax.swing.JFrame {
                 Class.forName("com.mysql.cj.jdbc.Driver");
                 java.sql.Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/hotels", "root", "123456");
               
-                pst=con.prepareStatement("insert into customercheckout(customername,mobile,id,Price,amount,checkout,noofday,Roomnumber,checkin,status)values(?,?,?,?,?,?,?,?,?)");
+                pst=con.prepareStatement("insert into customercheckout(customername,mobile,id,Price,amount,checkout,noofday,Roomnumber,checkin,status)values(?,?,?,?,?,?,?,?,?,?)");
                 pst.setString(1, Textname.getText());
                 pst.setString(2, Textnumber.getText());
                 pst.setString(3, TextAdhar.getText());
