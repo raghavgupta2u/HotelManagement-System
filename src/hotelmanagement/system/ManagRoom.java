@@ -1,6 +1,8 @@
 package hotelmanagement.system;
 
 import com.mysql.cj.jdbc.result.ResultSetMetaData;
+import java.awt.Toolkit;
+import java.awt.event.KeyEvent;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -123,6 +125,12 @@ public class ManagRoom extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(jTable1);
 
+        Textroomnumber.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                TextroomnumberKeyPressed(evt);
+            }
+        });
+
         jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(0, 51, 51));
         jLabel2.setText("Room Number");
@@ -145,6 +153,12 @@ public class ManagRoom extends javax.swing.JFrame {
         jLabel12.setText("Price");
         jLabel12.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
         jLabel12.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+
+        Textprice.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                TextpriceKeyPressed(evt);
+            }
+        });
 
         ComboBoxbedtype.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Single", "Double" }));
 
@@ -401,6 +415,34 @@ public class ManagRoom extends javax.swing.JFrame {
         // TODO add your handling code here:
         dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void TextroomnumberKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TextroomnumberKeyPressed
+        // TODO add your handling code here:
+      
+       
+            if(evt.getExtendedKeyCode()==KeyEvent.VK_BACK_SPACE||evt.getExtendedKeyCode()==KeyEvent.VK_DELETE){
+                Textroomnumber.setEditable(true);
+            }
+            else{
+                Textroomnumber.setEditable(false);
+                Toolkit.getDefaultToolkit().beep();
+            }
+        
+    }//GEN-LAST:event_TextroomnumberKeyPressed
+
+    private void TextpriceKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TextpriceKeyPressed
+        // TODO add your handling code here:
+       
+  
+            if(evt.getExtendedKeyCode()==KeyEvent.VK_BACK_SPACE||evt.getExtendedKeyCode()==KeyEvent.VK_DELETE){
+                Textprice.setEditable(true);
+            }
+            else{
+                Textprice.setEditable(false);
+                Toolkit.getDefaultToolkit().beep();
+            }
+        
+    }//GEN-LAST:event_TextpriceKeyPressed
 
     /**
      * @param args the command line arguments

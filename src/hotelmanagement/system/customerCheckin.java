@@ -5,6 +5,8 @@
 package hotelmanagement.system;
 
 import java.awt.HeadlessException;
+import java.awt.Toolkit;
+import java.awt.event.KeyEvent;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -108,10 +110,24 @@ public class customerCheckin extends javax.swing.JFrame {
                 CUSTOMERNAMEActionPerformed(evt);
             }
         });
+        CUSTOMERNAME.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                CUSTOMERNAMEKeyPressed(evt);
+            }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                CUSTOMERNAMEKeyTyped(evt);
+            }
+        });
 
         jLabel14.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel14.setForeground(new java.awt.Color(0, 51, 51));
         jLabel14.setText("Mobile number");
+
+        customernumber.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                customernumberKeyPressed(evt);
+            }
+        });
 
         jLabel15.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel15.setForeground(new java.awt.Color(0, 51, 51));
@@ -126,6 +142,11 @@ public class customerCheckin extends javax.swing.JFrame {
         CustomerNationnality.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 CustomerNationnalityActionPerformed(evt);
+            }
+        });
+        CustomerNationnality.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                CustomerNationnalityKeyTyped(evt);
             }
         });
 
@@ -192,6 +213,12 @@ public class customerCheckin extends javax.swing.JFrame {
         Clear.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 ClearActionPerformed(evt);
+            }
+        });
+
+        AdharNumber.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                AdharNumberKeyPressed(evt);
             }
         });
 
@@ -539,6 +566,81 @@ public class customerCheckin extends javax.swing.JFrame {
         if(jComboBoxRoomnumber.getItemCount()==0)
         roomprice.setText("");
     }//GEN-LAST:event_ClearActionPerformed
+
+    private void AdharNumberKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_AdharNumberKeyPressed
+        // TODO add your handling code here:
+        String adh= AdharNumber.getText();
+        int length = adh.length();
+        char c= evt.getKeyChar();
+        
+        if(evt.getKeyChar()>='0' && evt.getKeyChar()<='9')
+        {
+            if(length<12){
+                AdharNumber.setEditable(true);
+            }
+            else{
+                AdharNumber.setEditable(false);
+                Toolkit.getDefaultToolkit().beep();
+            }
+        }
+        else{
+            if(evt.getExtendedKeyCode()==KeyEvent.VK_BACK_SPACE||evt.getExtendedKeyCode()==KeyEvent.VK_DELETE){
+                AdharNumber.setEditable(true);
+            }
+            else{
+                AdharNumber.setEditable(false);
+                Toolkit.getDefaultToolkit().beep();
+            }
+        }
+        
+    }//GEN-LAST:event_AdharNumberKeyPressed
+
+    private void customernumberKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_customernumberKeyPressed
+        // TODO add your handling code here:
+         // TODO add your handling code here:
+        String adh= customernumber.getText();
+        int length = adh.length();
+        char c= evt.getKeyChar();
+        
+        if(evt.getKeyChar()>='0' && evt.getKeyChar()<='9'){
+            if(length<10){
+                customernumber.setEditable(true);
+            }
+            else{
+                customernumber.setEditable(false);
+                Toolkit.getDefaultToolkit().beep();
+                }
+        }else{
+            if(evt.getExtendedKeyCode()==KeyEvent.VK_BACK_SPACE||evt.getExtendedKeyCode()==KeyEvent.VK_DELETE){
+                customernumber.setEditable(true);
+            }
+            else{
+                customernumber.setEditable(false);
+                Toolkit.getDefaultToolkit().beep();
+            }
+        }
+        
+    }//GEN-LAST:event_customernumberKeyPressed
+
+    private void CUSTOMERNAMEKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_CUSTOMERNAMEKeyPressed
+        // TODO add your handling code here
+    }//GEN-LAST:event_CUSTOMERNAMEKeyPressed
+
+    private void CUSTOMERNAMEKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_CUSTOMERNAMEKeyTyped
+        // TODO add your handling code here:
+        /*if(Character.isLetter(evt.getKeyChar())){
+            evt.consume();
+            Toolkit.getDefaultToolkit().beep();
+        }*/
+    }//GEN-LAST:event_CUSTOMERNAMEKeyTyped
+
+    private void CustomerNationnalityKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_CustomerNationnalityKeyTyped
+        // TODO add your handling code here:
+        /*if(Character.isLetter(evt.getKeyChar())){
+            evt.consume();
+            Toolkit.getDefaultToolkit().beep();
+        }*/
+    }//GEN-LAST:event_CustomerNationnalityKeyTyped
 
     /**
      * @param args the command line arguments
