@@ -96,7 +96,6 @@ public class ManagRoom extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setLocation(new java.awt.Point(70, 30));
         setUndecorated(true);
-        setPreferredSize(new java.awt.Dimension(1790, 1000));
 
         jPanel12.setBackground(new java.awt.Color(255, 255, 255));
         jPanel12.setPreferredSize(new java.awt.Dimension(1790, 1000));
@@ -129,6 +128,9 @@ public class ManagRoom extends javax.swing.JFrame {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 TextroomnumberKeyPressed(evt);
             }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                TextroomnumberKeyTyped(evt);
+            }
         });
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
@@ -157,6 +159,9 @@ public class ManagRoom extends javax.swing.JFrame {
         Textprice.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 TextpriceKeyPressed(evt);
+            }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                TextpriceKeyTyped(evt);
             }
         });
 
@@ -417,32 +422,27 @@ public class ManagRoom extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void TextroomnumberKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TextroomnumberKeyPressed
-        // TODO add your handling code here:
-      
-       
-            if(evt.getExtendedKeyCode()==KeyEvent.VK_BACK_SPACE||evt.getExtendedKeyCode()==KeyEvent.VK_DELETE){
-                Textroomnumber.setEditable(true);
-            }
-            else{
-                Textroomnumber.setEditable(false);
-                Toolkit.getDefaultToolkit().beep();
-            }
-        
+
     }//GEN-LAST:event_TextroomnumberKeyPressed
 
     private void TextpriceKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TextpriceKeyPressed
         // TODO add your handling code here:
-       
-  
-            if(evt.getExtendedKeyCode()==KeyEvent.VK_BACK_SPACE||evt.getExtendedKeyCode()==KeyEvent.VK_DELETE){
-                Textprice.setEditable(true);
-            }
-            else{
-                Textprice.setEditable(false);
-                Toolkit.getDefaultToolkit().beep();
-            }
-        
     }//GEN-LAST:event_TextpriceKeyPressed
+
+    private void TextroomnumberKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TextroomnumberKeyTyped
+        if(Character.isLetter(evt.getKeyChar())){
+            evt.consume();
+            Toolkit.getDefaultToolkit().beep();
+        }
+    }//GEN-LAST:event_TextroomnumberKeyTyped
+
+    private void TextpriceKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TextpriceKeyTyped
+        // TODO add your handling code here:
+           if(Character.isLetter(evt.getKeyChar())){
+            evt.consume();
+            Toolkit.getDefaultToolkit().beep();
+        }
+    }//GEN-LAST:event_TextpriceKeyTyped
 
     /**
      * @param args the command line arguments

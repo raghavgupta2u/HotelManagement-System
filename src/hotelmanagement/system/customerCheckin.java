@@ -628,18 +628,18 @@ public class customerCheckin extends javax.swing.JFrame {
 
     private void CUSTOMERNAMEKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_CUSTOMERNAMEKeyTyped
         // TODO add your handling code here:
-        /*if(Character.isLetter(evt.getKeyChar())){
+        if(!Character.isLetter(evt.getKeyChar())){
             evt.consume();
             Toolkit.getDefaultToolkit().beep();
-        }*/
+        }
     }//GEN-LAST:event_CUSTOMERNAMEKeyTyped
 
     private void CustomerNationnalityKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_CustomerNationnalityKeyTyped
         // TODO add your handling code here:
-        /*if(Character.isLetter(evt.getKeyChar())){
+        if(!Character.isLetter(evt.getKeyChar())){
             evt.consume();
             Toolkit.getDefaultToolkit().beep();
-        }*/
+        }
     }//GEN-LAST:event_CustomerNationnalityKeyTyped
 
     /**
