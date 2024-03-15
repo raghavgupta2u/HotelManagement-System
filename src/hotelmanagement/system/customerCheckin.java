@@ -91,7 +91,6 @@ public class customerCheckin extends javax.swing.JFrame {
         setAlwaysOnTop(true);
         setLocation(new java.awt.Point(0, 0));
         setUndecorated(true);
-        setPreferredSize(new java.awt.Dimension(790, 530));
 
         jPanel13.setBackground(new java.awt.Color(255, 255, 255));
         jPanel13.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 51, 51)));
@@ -126,6 +125,9 @@ public class customerCheckin extends javax.swing.JFrame {
         customernumber.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 customernumberKeyPressed(evt);
+            }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                customernumberKeyTyped(evt);
             }
         });
 
@@ -598,7 +600,7 @@ public class customerCheckin extends javax.swing.JFrame {
     private void customernumberKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_customernumberKeyPressed
         // TODO add your handling code here:
          // TODO add your handling code here:
-        String adh= customernumber.getText();
+       String adh= customernumber.getText();
         int length = adh.length();
         char c= evt.getKeyChar();
         
@@ -610,7 +612,8 @@ public class customerCheckin extends javax.swing.JFrame {
                 customernumber.setEditable(false);
                 Toolkit.getDefaultToolkit().beep();
                 }
-        }else{
+        }
+         else{
             if(evt.getExtendedKeyCode()==KeyEvent.VK_BACK_SPACE||evt.getExtendedKeyCode()==KeyEvent.VK_DELETE){
                 customernumber.setEditable(true);
             }
@@ -641,6 +644,15 @@ public class customerCheckin extends javax.swing.JFrame {
             Toolkit.getDefaultToolkit().beep();
         }
     }//GEN-LAST:event_CustomerNationnalityKeyTyped
+
+    private void customernumberKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_customernumberKeyTyped
+        // TODO add your handling code here:
+             if(Character.isLetter(evt.getKeyChar())){
+            evt.consume();
+            Toolkit.getDefaultToolkit().beep();
+        }
+    
+    }//GEN-LAST:event_customernumberKeyTyped
 
     /**
      * @param args the command line arguments
