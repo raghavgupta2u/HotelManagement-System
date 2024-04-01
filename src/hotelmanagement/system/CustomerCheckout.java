@@ -8,9 +8,13 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
+import java.time.LocalTime;
 import java.time.ZoneId;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.Vector;
+import javax.print.attribute.DateTimeSyntax;
+import javax.print.attribute.standard.DateTimeAtCompleted;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -31,9 +35,21 @@ public class CustomerCheckout extends javax.swing.JFrame {
      */
     public CustomerCheckout() {
         initComponents();
+        
+        //add current date
         SimpleDateFormat date = new SimpleDateFormat("yyyy-MM-dd ");
         Date d = new Date();
         outdate.setText(date.format(d));
+        
+        //add current time
+         SimpleDateFormat  timeFormat;
+        timeFormat = new SimpleDateFormat("hh:mm");
+        Calendar calendar= Calendar.getInstance();
+        Date currDate= calendar.getTime();
+        String t= timeFormat.format(currDate);
+        time.setText(t);
+        
+        //calling mathod
         s();
     }
     public void s() {
@@ -110,6 +126,8 @@ public class CustomerCheckout extends javax.swing.JFrame {
         TextNoofdays = new javax.swing.JTextField();
         jLabel29 = new javax.swing.JLabel();
         TextAmount = new javax.swing.JTextField();
+        Time = new javax.swing.JLabel();
+        time = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -256,6 +274,10 @@ public class CustomerCheckout extends javax.swing.JFrame {
         jLabel29.setForeground(new java.awt.Color(0, 51, 51));
         jLabel29.setText("Total Amout");
 
+        Time.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        Time.setForeground(new java.awt.Color(0, 51, 51));
+        Time.setText("Time");
+
         javax.swing.GroupLayout jPanel14Layout = new javax.swing.GroupLayout(jPanel14);
         jPanel14.setLayout(jPanel14Layout);
         jPanel14Layout.setHorizontalGroup(
@@ -296,8 +318,11 @@ public class CustomerCheckout extends javax.swing.JFrame {
                                             .addComponent(jLabel27)
                                             .addComponent(jLabel29))
                                         .addGap(28, 28, 28)
-                                        .addGroup(jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(TextAmount, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGroup(jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                            .addGroup(jPanel14Layout.createSequentialGroup()
+                                                .addComponent(TextAmount, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addGap(18, 18, 18)
+                                                .addComponent(Time, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                                             .addGroup(jPanel14Layout.createSequentialGroup()
                                                 .addComponent(TextCheckinDate, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)
                                                 .addGap(18, 18, 18)
@@ -309,9 +334,10 @@ public class CustomerCheckout extends javax.swing.JFrame {
                                         .addGap(18, 18, 18)
                                         .addComponent(jLabel26)))
                                 .addGap(23, 23, 23)
-                                .addGroup(jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(TextAdhar, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(outdate, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                    .addComponent(outdate, javax.swing.GroupLayout.DEFAULT_SIZE, 115, Short.MAX_VALUE)
+                                    .addComponent(time)))))
                     .addGroup(jPanel14Layout.createSequentialGroup()
                         .addGap(217, 217, 217)
                         .addComponent(jLabel21)
@@ -352,7 +378,9 @@ public class CustomerCheckout extends javax.swing.JFrame {
                     .addComponent(jLabel24)
                     .addComponent(TextNoofdays, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel29)
-                    .addComponent(TextAmount, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(TextAmount, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(Time)
+                    .addComponent(time, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 228, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 11, Short.MAX_VALUE)
@@ -533,6 +561,13 @@ public class CustomerCheckout extends javax.swing.JFrame {
 
     private void CHECKOUTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CHECKOUTActionPerformed
         // TODO add your handling code here:
+        SimpleDateFormat  timeFormat;
+        timeFormat = new SimpleDateFormat("hh:mm");
+        Calendar calendar= Calendar.getInstance();
+        Date currDate= calendar.getTime();
+        String t= timeFormat.format(currDate);
+        
+       
         
        if (Textname.getText().equals("")) {
             JOptionPane.showMessageDialog(this, "Please Enter Room Number And Search it,Then Check Out Customer");
@@ -542,7 +577,7 @@ public class CustomerCheckout extends javax.swing.JFrame {
                 Class.forName("com.mysql.cj.jdbc.Driver");
                 java.sql.Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/hotels", "root", "123456");
               
-                pst=con.prepareStatement("insert into customercheckout(customername,mobile,id,Price,amount,checkout,noofday,Roomnumber,checkin,status)values(?,?,?,?,?,?,?,?,?,?)");
+                pst=con.prepareStatement("insert into customercheckout(customername,mobile,id,Price,amount,checkout,noofday,Roomnumber,checkin,status,time)values(?,?,?,?,?,?,?,?,?,?,?)");
                 pst.setString(1, Textname.getText());
                 pst.setString(2, Textnumber.getText());
                 pst.setString(3, TextAdhar.getText());
@@ -557,6 +592,7 @@ public class CustomerCheckout extends javax.swing.JFrame {
                 pst.setString(8, TextRoomnumber.getText());
                 pst.setString(9, TextCheckinDate.getText());
                 pst.setString(10, "CHECK OUT");
+                pst.setString(11, time.getText());
                 pst.executeUpdate();
                 
                 pst = con.prepareStatement("update customer set Status=? where Roomnumber=?");
@@ -642,6 +678,7 @@ public class CustomerCheckout extends javax.swing.JFrame {
     private javax.swing.JTextField TextRoomnumber;
     private javax.swing.JTextField Textname;
     private javax.swing.JTextField Textnumber;
+    private javax.swing.JLabel Time;
     private javax.swing.JPanel checkout;
     private javax.swing.JLabel jLabel21;
     private javax.swing.JLabel jLabel22;
@@ -656,5 +693,6 @@ public class CustomerCheckout extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel14;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTextField outdate;
+    private javax.swing.JTextField time;
     // End of variables declaration//GEN-END:variables
 }

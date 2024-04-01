@@ -8,6 +8,9 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
@@ -224,7 +227,17 @@ public class LoginPage extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void userloginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_userloginActionPerformed
-       
+         
+        SimpleDateFormat  dat=new SimpleDateFormat("yyyy/MM/dd ");
+        Date d=new Date();
+        String s= dat.format(d);
+        
+        SimpleDateFormat  timeFormat;
+        timeFormat = new SimpleDateFormat("hh:mm");
+        Calendar calendar= Calendar.getInstance();
+        Date currDate= calendar.getTime();
+        String t= timeFormat.format(currDate);
+        
         PreparedStatement pst;
         ResultSet rs;
         try {
@@ -237,9 +250,16 @@ public class LoginPage extends javax.swing.JFrame {
             if(rs.next()){
                     new HomePage().setVisible(true);
             }
-            else
+            else{
               JOptionPane.showMessageDialog(this,"Incorrect Email ID or Password");
-                     
+            }
+            pst=con.prepareStatement("insert into loginstatus(name,date,logintime)values(?,?,?)");
+            pst.setString(1, username.getText());
+            pst.setString(2, s);
+            pst.setString(3, t);
+            pst.executeUpdate();
+            
+            
         } catch (ClassNotFoundException | SQLException ex) {
             Logger.getLogger(LoginPage.class.getName()).log(Level.SEVERE, null, ex);
         }
