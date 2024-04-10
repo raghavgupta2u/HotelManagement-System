@@ -27,6 +27,7 @@ public class HomePage extends javax.swing.JFrame {
      public HomePage() throws ClassNotFoundException {
         initComponents();
          setExtendedState(JFrame.MAXIMIZED_BOTH);
+         username.setText(String.valueOf(id.userid).toString());
        }
     
     //Manage room frame coding
@@ -57,7 +58,7 @@ public class HomePage extends javax.swing.JFrame {
         jPanel2 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
+        username = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
         MenuBar = new javax.swing.JPanel();
         jPanel4 = new javax.swing.JPanel();
@@ -121,8 +122,8 @@ public class HomePage extends javax.swing.JFrame {
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/user.png"))); // NOI18N
 
-        jLabel6.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel6.setText("jLabel6");
+        username.setForeground(new java.awt.Color(255, 255, 255));
+        username.setText("jLabel6");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -132,7 +133,7 @@ public class HomePage extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 1638, Short.MAX_VALUE)
-                .addComponent(jLabel6)
+                .addComponent(username)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel3)
                 .addGap(25, 25, 25))
@@ -145,7 +146,7 @@ public class HomePage extends javax.swing.JFrame {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(17, 17, 17)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel6)
+                    .addComponent(username)
                     .addComponent(jLabel3))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -320,7 +321,7 @@ public class HomePage extends javax.swing.JFrame {
             .addGap(0, 1000, Short.MAX_VALUE)
         );
 
-        jPanel1.add(jPanel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 60, 1790, 1000));
+        jPanel1.add(jPanel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 60, 1790, 1000));
 
         javax.swing.GroupLayout panel1Layout = new javax.swing.GroupLayout(panel1);
         panel1.setLayout(panel1Layout);
@@ -376,34 +377,27 @@ public class HomePage extends javax.swing.JFrame {
             PreparedStatement pst;       
             Class.forName("com.mysql.cj.jdbc.Driver");
             java.sql.Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/hotels","root","123456");
-            pst = con.prepareStatement("Select * from loginstatus where =?");
-            pst.executeQuery();
-         
+       
         SimpleDateFormat  timeFormat;
         timeFormat = new SimpleDateFormat("hh:mm");
         Calendar calendar= Calendar.getInstance();
         Date currDate= calendar.getTime();
         String t= timeFormat.format(currDate);
         
-        ResultSet rs = null;
+       /* ResultSet rs = null;
         String f1=rs.getString("logintime");
         String f2=t;
-            
-           
-            Date d1=timeFormat.parse(f1);
-            Date d2=timeFormat.parse(f2); 
-            long diff=d2.getTime()-d1.getTime();
-           
-               
-               
-            
-            pst=con.prepareStatement("insert into loginstatus(logouttime,timespend)values(?,?)");
+        Date d1=timeFormat.parse(f1);
+        Date d2=timeFormat.parse(f2); 
+        long diff=d2.getTime()-d1.getTime();
+         */  
+            pst=con.prepareStatement("update loginstatus set logouttime=? where id=?");
             pst.setString(1,t);
-            pst.setString(2,String.valueOf(diff));
+            pst.setString(2,username.getText());
             pst.executeUpdate();
             
                
-            }catch(ClassNotFoundException | SQLException | ParseException e){
+            }catch(ClassNotFoundException | SQLException  e){
           }
          
          int yes=JOptionPane.showConfirmDialog(this,"Are you sure?","Exit",JOptionPane.YES_NO_OPTION,JOptionPane.QUESTION_MESSAGE);
@@ -479,7 +473,6 @@ public class HomePage extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
@@ -505,5 +498,6 @@ public class HomePage extends javax.swing.JFrame {
     private java.awt.MenuBar menuBar4;
     private java.awt.MenuBar menuBar5;
     private java.awt.Panel panel1;
+    private javax.swing.JLabel username;
     // End of variables declaration//GEN-END:variables
 }

@@ -37,10 +37,11 @@ public class CustomerCheckout extends javax.swing.JFrame {
         initComponents();
         
         //add current date
-        SimpleDateFormat date = new SimpleDateFormat("yyyy-MM-dd ");
+        /*SimpleDateFormat date = new SimpleDateFormat("yyyy-MM-dd ");
         Date d = new Date();
         outdate.setText(date.format(d));
-        
+        */
+      
         //add current time
          SimpleDateFormat  timeFormat;
         timeFormat = new SimpleDateFormat("hh:mm");
@@ -100,44 +101,47 @@ public class CustomerCheckout extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        checkout = new javax.swing.JPanel();
-        jPanel14 = new javax.swing.JPanel();
-        jLabel9 = new javax.swing.JLabel();
+        Search = new javax.swing.JButton();
         jLabel21 = new javax.swing.JLabel();
         TextRoomnumber = new javax.swing.JTextField();
-        Search = new javax.swing.JButton();
-        jLabel22 = new javax.swing.JLabel();
-        Textname = new javax.swing.JTextField();
-        jLabel23 = new javax.swing.JLabel();
-        Textnumber = new javax.swing.JTextField();
-        TextPriceParDay = new javax.swing.JTextField();
+        jLabel9 = new javax.swing.JLabel();
         jLabel25 = new javax.swing.JLabel();
-        outdate = new javax.swing.JTextField();
-        jLabel26 = new javax.swing.JLabel();
-        TextAdhar = new javax.swing.JTextField();
+        jLabel22 = new javax.swing.JLabel();
+        jLabel24 = new javax.swing.JLabel();
+        TextNoofdays = new javax.swing.JTextField();
+        Textname = new javax.swing.JTextField();
+        TextPriceParDay = new javax.swing.JTextField();
+        jLabel23 = new javax.swing.JLabel();
         jLabel27 = new javax.swing.JLabel();
-        jLabel28 = new javax.swing.JLabel();
+        jLabel29 = new javax.swing.JLabel();
+        TextAmount = new javax.swing.JTextField();
         TextCheckinDate = new javax.swing.JTextField();
+        Textnumber = new javax.swing.JTextField();
+        jLabel26 = new javax.swing.JLabel();
+        jLabel28 = new javax.swing.JLabel();
+        Time = new javax.swing.JLabel();
+        jPanel14 = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
         Recordtable = new javax.swing.JTable();
         CHECKOUT = new javax.swing.JButton();
         ClearButton = new javax.swing.JButton();
-        jLabel24 = new javax.swing.JLabel();
-        TextNoofdays = new javax.swing.JTextField();
-        jLabel29 = new javax.swing.JLabel();
-        TextAmount = new javax.swing.JTextField();
-        Time = new javax.swing.JLabel();
+        paymentmathod = new javax.swing.JComboBox<>();
+        jLabel1 = new javax.swing.JLabel();
+        TextAdhar = new javax.swing.JTextField();
         time = new javax.swing.JTextField();
+        jDateChooser1 = new com.toedter.calendar.JDateChooser();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        checkout.setBackground(new java.awt.Color(255, 255, 255));
-
-        jPanel14.setBackground(new java.awt.Color(255, 255, 255));
-
-        jLabel9.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel9.setForeground(new java.awt.Color(0, 51, 51));
-        jLabel9.setText("Checkout");
+        Search.setBackground(new java.awt.Color(0, 51, 51));
+        Search.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        Search.setForeground(new java.awt.Color(255, 255, 255));
+        Search.setText("Search");
+        Search.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                SearchActionPerformed(evt);
+            }
+        });
 
         jLabel21.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel21.setForeground(new java.awt.Color(0, 51, 51));
@@ -152,34 +156,26 @@ public class CustomerCheckout extends javax.swing.JFrame {
             }
         });
 
-        Search.setBackground(new java.awt.Color(0, 51, 51));
-        Search.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        Search.setForeground(new java.awt.Color(255, 255, 255));
-        Search.setText("Search");
-        Search.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                SearchActionPerformed(evt);
-            }
-        });
+        jLabel9.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel9.setForeground(new java.awt.Color(0, 51, 51));
+        jLabel9.setText("Checkout");
+
+        jLabel25.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jLabel25.setForeground(new java.awt.Color(0, 51, 51));
+        jLabel25.setText("Price Par Day");
 
         jLabel22.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel22.setForeground(new java.awt.Color(0, 51, 51));
         jLabel22.setText("Customer Name");
         jLabel22.setToolTipText("");
 
+        jLabel24.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jLabel24.setForeground(new java.awt.Color(0, 51, 51));
+        jLabel24.setText("Number of Days");
+
         Textname.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 TextnameActionPerformed(evt);
-            }
-        });
-
-        jLabel23.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jLabel23.setForeground(new java.awt.Color(0, 51, 51));
-        jLabel23.setText("Mobile Number");
-
-        Textnumber.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                TextnumberActionPerformed(evt);
             }
         });
 
@@ -189,13 +185,23 @@ public class CustomerCheckout extends javax.swing.JFrame {
             }
         });
 
-        jLabel25.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jLabel25.setForeground(new java.awt.Color(0, 51, 51));
-        jLabel25.setText("Price Par Day");
+        jLabel23.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jLabel23.setForeground(new java.awt.Color(0, 51, 51));
+        jLabel23.setText("Mobile Number");
 
-        outdate.addActionListener(new java.awt.event.ActionListener() {
+        jLabel27.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jLabel27.setForeground(new java.awt.Color(0, 51, 51));
+        jLabel27.setText("Check in Date");
+
+        jLabel29.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jLabel29.setForeground(new java.awt.Color(0, 51, 51));
+        jLabel29.setText("Total Amout");
+
+        TextCheckinDate.setEditable(false);
+
+        Textnumber.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                outdateActionPerformed(evt);
+                TextnumberActionPerformed(evt);
             }
         });
 
@@ -203,22 +209,16 @@ public class CustomerCheckout extends javax.swing.JFrame {
         jLabel26.setForeground(new java.awt.Color(0, 51, 51));
         jLabel26.setText("Adhar Number");
 
-        TextAdhar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                TextAdharActionPerformed(evt);
-            }
-        });
-
-        jLabel27.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jLabel27.setForeground(new java.awt.Color(0, 51, 51));
-        jLabel27.setText("Check in Date");
-
         jLabel28.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel28.setForeground(new java.awt.Color(0, 51, 51));
         jLabel28.setText("Check out Date");
         jLabel28.setToolTipText("");
 
-        TextCheckinDate.setEditable(false);
+        Time.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        Time.setForeground(new java.awt.Color(0, 51, 51));
+        Time.setText("Time");
+
+        jPanel14.setBackground(new java.awt.Color(255, 255, 255));
 
         Recordtable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -266,162 +266,182 @@ public class CustomerCheckout extends javax.swing.JFrame {
             }
         });
 
-        jLabel24.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jLabel24.setForeground(new java.awt.Color(0, 51, 51));
-        jLabel24.setText("Number of Days");
+        paymentmathod.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "NET BANKING", "UPI", "CASH" }));
 
-        jLabel29.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jLabel29.setForeground(new java.awt.Color(0, 51, 51));
-        jLabel29.setText("Total Amout");
-
-        Time.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        Time.setForeground(new java.awt.Color(0, 51, 51));
-        Time.setText("Time");
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(0, 51, 51));
+        jLabel1.setText("Mode of payment");
 
         javax.swing.GroupLayout jPanel14Layout = new javax.swing.GroupLayout(jPanel14);
         jPanel14.setLayout(jPanel14Layout);
         jPanel14Layout.setHorizontalGroup(
             jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel14Layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(CHECKOUT)
-                .addGap(18, 18, 18)
-                .addComponent(ClearButton)
+                .addGroup(jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel14Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jScrollPane2))
+                    .addGroup(jPanel14Layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(CHECKOUT)
+                        .addGap(18, 18, 18)
+                        .addComponent(ClearButton)))
                 .addGap(18, 18, 18))
             .addGroup(jPanel14Layout.createSequentialGroup()
-                .addGroup(jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel14Layout.createSequentialGroup()
-                        .addGap(349, 349, 349)
-                        .addComponent(jLabel9))
-                    .addGroup(jPanel14Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addGroup(jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 773, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(jPanel14Layout.createSequentialGroup()
-                                .addGroup(jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel22)
-                                    .addComponent(jLabel25)
-                                    .addComponent(jLabel24))
-                                .addGroup(jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(jPanel14Layout.createSequentialGroup()
-                                        .addGap(17, 17, 17)
-                                        .addComponent(TextNoofdays, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(jPanel14Layout.createSequentialGroup()
-                                        .addGap(18, 18, 18)
-                                        .addGroup(jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(TextPriceParDay, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(Textname, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                                .addGap(18, 18, 18)
-                                .addGroup(jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(jPanel14Layout.createSequentialGroup()
-                                        .addGroup(jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(jLabel27)
-                                            .addComponent(jLabel29))
-                                        .addGap(28, 28, 28)
-                                        .addGroup(jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                            .addGroup(jPanel14Layout.createSequentialGroup()
-                                                .addComponent(TextAmount, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addGap(18, 18, 18)
-                                                .addComponent(Time, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                            .addGroup(jPanel14Layout.createSequentialGroup()
-                                                .addComponent(TextCheckinDate, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addGap(18, 18, 18)
-                                                .addComponent(jLabel28))))
-                                    .addGroup(jPanel14Layout.createSequentialGroup()
-                                        .addComponent(jLabel23)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(Textnumber, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(jLabel26)))
-                                .addGap(23, 23, 23)
-                                .addGroup(jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(TextAdhar, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(outdate, javax.swing.GroupLayout.DEFAULT_SIZE, 115, Short.MAX_VALUE)
-                                    .addComponent(time)))))
-                    .addGroup(jPanel14Layout.createSequentialGroup()
-                        .addGap(217, 217, 217)
-                        .addComponent(jLabel21)
-                        .addGap(18, 18, 18)
-                        .addComponent(TextRoomnumber, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(Search)))
-                .addContainerGap(10, Short.MAX_VALUE))
+                .addContainerGap()
+                .addComponent(jLabel1)
+                .addGap(81, 81, 81)
+                .addComponent(paymentmathod, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel14Layout.setVerticalGroup(
             jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel14Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel9)
-                .addGap(27, 27, 27)
                 .addGroup(jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel21)
-                    .addComponent(TextRoomnumber, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(Search))
-                .addGap(34, 34, 34)
-                .addGroup(jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel22)
-                    .addComponent(Textname, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel23)
-                    .addComponent(Textnumber, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel26)
-                    .addComponent(TextAdhar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(23, 23, 23)
-                .addGroup(jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel25)
-                    .addComponent(TextPriceParDay, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel27)
-                    .addComponent(TextCheckinDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel28)
-                    .addComponent(outdate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 26, Short.MAX_VALUE)
-                .addGroup(jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel24)
-                    .addComponent(TextNoofdays, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel29)
-                    .addComponent(TextAmount, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(Time)
-                    .addComponent(time, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 228, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 11, Short.MAX_VALUE)
+                    .addComponent(paymentmathod, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel1))
+                .addGap(56, 56, 56)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 368, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(30, 30, 30)
                 .addGroup(jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(CHECKOUT)
                     .addComponent(ClearButton))
-                .addGap(26, 26, 26))
+                .addContainerGap(11, Short.MAX_VALUE))
         );
 
-        javax.swing.GroupLayout checkoutLayout = new javax.swing.GroupLayout(checkout);
-        checkout.setLayout(checkoutLayout);
-        checkoutLayout.setHorizontalGroup(
-            checkoutLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel14, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-        );
-        checkoutLayout.setVerticalGroup(
-            checkoutLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(checkoutLayout.createSequentialGroup()
-                .addComponent(jPanel14, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
-        );
+        TextAdhar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                TextAdharActionPerformed(evt);
+            }
+        });
+
+        jDateChooser1.setDateFormatString("yyyy-MM-dd");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 796, Short.MAX_VALUE)
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(checkout, javax.swing.GroupLayout.PREFERRED_SIZE, 784, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap()))
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(526, 526, 526)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(132, 132, 132)
+                                        .addComponent(jLabel9))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(jLabel21, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(18, 18, 18)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(TextAmount, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(TextCheckinDate, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(Textnumber, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addGroup(layout.createSequentialGroup()
+                                                .addComponent(TextRoomnumber, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addGap(18, 18, 18)
+                                                .addComponent(Search, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE))))))
+                            .addGroup(layout.createSequentialGroup()
+                                .addContainerGap()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel22)
+                                    .addComponent(jLabel25)
+                                    .addComponent(jLabel24))
+                                .addGap(90, 90, 90)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(TextNoofdays, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(1, 1, 1)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(TextPriceParDay, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(Textname, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                .addGap(164, 164, 164)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(jLabel27)
+                                            .addComponent(jLabel29))
+                                        .addGap(10, 10, 10))
+                                    .addComponent(jLabel23))))
+                        .addGap(103, 103, 103)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(Time, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jLabel28))
+                            .addComponent(jLabel26))
+                        .addGap(130, 130, 130)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(time, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addComponent(jDateChooser1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(TextAdhar, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 113, Short.MAX_VALUE)))
+                        .addGap(0, 152, Short.MAX_VALUE))
+                    .addComponent(jPanel14, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 541, Short.MAX_VALUE)
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(checkout, javax.swing.GroupLayout.PREFERRED_SIZE, 529, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap()))
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel9)
+                .addGap(27, 27, 27)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(7, 7, 7)
+                        .addComponent(jLabel21))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(1, 1, 1)
+                        .addComponent(TextRoomnumber, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(Search))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(75, 75, 75)
+                        .addComponent(jLabel22)
+                        .addGap(23, 23, 23)
+                        .addComponent(jLabel25)
+                        .addGap(26, 26, 26)
+                        .addComponent(jLabel24))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(67, 67, 67)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel23)
+                                .addGap(23, 23, 23)
+                                .addComponent(jLabel27)
+                                .addGap(26, 26, 26)
+                                .addComponent(jLabel29))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(Textname, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(23, 23, 23)
+                                .addComponent(TextPriceParDay, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(26, 26, 26)
+                                .addComponent(TextNoofdays, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(58, 58, 58)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel26)
+                                .addGap(23, 23, 23)
+                                .addComponent(jLabel28)
+                                .addGap(26, 26, 26)
+                                .addComponent(Time))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(Textnumber, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(23, 23, 23)
+                                .addComponent(TextCheckinDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(26, 26, 26)
+                                .addComponent(TextAmount, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(TextAdhar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(jDateChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(31, 31, 31)
+                                .addComponent(time, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                .addGap(18, 18, 18)
+                .addComponent(jPanel14, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(9, 9, 9))
         );
 
         pack();
@@ -456,7 +476,10 @@ public class CustomerCheckout extends javax.swing.JFrame {
                 TextAdhar.setText(rs.getString("id"));
             }
 
-            String s1= outdate.getText();
+           // String s1= outdate.getText();
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+            String date1 = sdf.format(jDateChooser1.getDate());
+            String s1=date1;
             SimpleDateFormat sim=new SimpleDateFormat("yyyy-MM-dd");
             String f1=rs.getString("checkin");
             String f2=s1;
@@ -500,52 +523,9 @@ public class CustomerCheckout extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_TextPriceParDayActionPerformed
 
-    private void outdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_outdateActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_outdateActionPerformed
-
     private void TextAdharActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TextAdharActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_TextAdharActionPerformed
-
-    private void RecordtableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_RecordtableMouseClicked
-        // TODO add your handling code here:
-        
-        DefaultTableModel RecordTable = (DefaultTableModel) Recordtable.getModel();
-        int SelectedRows = Recordtable.getSelectedRow();
-        Textname.setText(RecordTable.getValueAt(SelectedRows, 0).toString());
-        Textnumber.setText(RecordTable.getValueAt(SelectedRows, 1).toString());
-        TextCheckinDate.setText(RecordTable.getValueAt(SelectedRows, 6).toString());
-        TextPriceParDay.setText(RecordTable.getValueAt(SelectedRows, 7).toString());
-        TextAdhar.setText(RecordTable.getValueAt(SelectedRows, 2).toString());
-        TextRoomnumber.setText(RecordTable.getValueAt(SelectedRows, 3).toString());
-
-        
-        String s1= outdate.getText();
-        SimpleDateFormat sim=new SimpleDateFormat("yyyy-MM-dd");
-        String f1=RecordTable.getValueAt(SelectedRows, 6).toString();
-        String f2=s1;
-        try{
-            Date d1=sim.parse(f1);
-            Date d2=sim.parse(f2);
-            long diff=d2.getTime()-d1.getTime();
-            int days=(int)(diff/(1000*24*60*60));
-            if(days==0){
-            TextNoofdays.setText("1");
-            }
-            else{
-            TextNoofdays.setText(String.valueOf(days));
-            }
-            double p=Double.parseDouble(RecordTable.getValueAt(SelectedRows,7).toString());
-            pri=days*p;
-            
-            if(days==0)
-            TextAmount.setText(String.valueOf(p));
-            else
-            TextAmount.setText(String.valueOf(pri));
-        }catch(Exception e){
-        }
-    }//GEN-LAST:event_RecordtableMouseClicked
 
     private void ClearButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ClearButtonActionPerformed
         // TODO add your handling code here:
@@ -566,69 +546,107 @@ public class CustomerCheckout extends javax.swing.JFrame {
         Calendar calendar= Calendar.getInstance();
         Date currDate= calendar.getTime();
         String t= timeFormat.format(currDate);
-        
-       
-        
-       if (Textname.getText().equals("")) {
+
+        if (Textname.getText().equals("")) {
             JOptionPane.showMessageDialog(this, "Please Enter Room Number And Search it,Then Check Out Customer");
         } else {
             try {
                 PreparedStatement pst = null;
                 Class.forName("com.mysql.cj.jdbc.Driver");
                 java.sql.Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/hotels", "root", "123456");
-              
-                pst=con.prepareStatement("insert into customercheckout(customername,mobile,id,Price,amount,checkout,noofday,Roomnumber,checkin,status,time)values(?,?,?,?,?,?,?,?,?,?,?)");
+
+                pst=con.prepareStatement("insert into customercheckout(customername,mobile,id,Price,amount,checkout,noofday,Roomnumber,checkin,status,time,modeofpayment)values(?,?,?,?,?,?,?,?,?,?,?,?)");
                 pst.setString(1, Textname.getText());
                 pst.setString(2, Textnumber.getText());
                 pst.setString(3, TextAdhar.getText());
                 pst.setString(4, TextPriceParDay.getText());
-/*                pst.setString(6, Textname.getText());
+                /*                pst.setString(6, Textname.getText());
                 pst.setString(7, Textname.getText());
                 pst.setString(8, Textname.getText());
                 pst.setString(9, Textname.getText());*/
                 pst.setString(5, TextAmount.getText());
-                pst.setString(6, outdate.getText());
+                SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+                String date1 = sdf.format(jDateChooser1.getDate());
+                pst.setString(6, date1);
                 pst.setString(7, TextNoofdays.getText());
                 pst.setString(8, TextRoomnumber.getText());
                 pst.setString(9, TextCheckinDate.getText());
                 pst.setString(10, "CHECK OUT");
                 pst.setString(11, time.getText());
+                pst.setString(12, paymentmathod.getItemAt(paymentmathod.getSelectedIndex()));
                 pst.executeUpdate();
-                
+
                 pst = con.prepareStatement("update customer set Status=? where Roomnumber=?");
                 pst.setString(1, "CHECK OUT");
                 pst.setString(2, TextRoomnumber.getText());
                 pst.executeUpdate();
-                
-                
-                
+
                 pst = con.prepareStatement("update room set status=? where roomnumber=?");
                 pst.setString(1, "NOT BOOKED");
                 pst.setString(2, TextRoomnumber.getText());
                 pst.executeUpdate();
-                
-                
-               
+
                 //JOptionPane.showMessageDialog(this,"Check Out Successfully\n Goto to Cutomer Bill Details menu and Print Bill");
                 int yes=JOptionPane.showConfirmDialog(this,"Check out Successfully.\nDo you want to see & print bill?","Check outed",JOptionPane.YES_NO_OPTION);
                 if(JOptionPane.YES_OPTION==yes)
-                    new Customerbilling().setVisible(true);
+                new Customerbilling().setVisible(true);
                 else{
-                s();
-                TextAdhar.setText("");
-                Textname.setText("");
-                Textnumber.setText("");
-                TextCheckinDate.setText("");
-                TextPriceParDay.setText("");
-                TextNoofdays.setText("");
-                TextAmount.setText("");
-                TextRoomnumber.setText("");
-                        }
+                    s();
+                    TextAdhar.setText("");
+                    Textname.setText("");
+                    Textnumber.setText("");
+                    TextCheckinDate.setText("");
+                    TextPriceParDay.setText("");
+                    TextNoofdays.setText("");
+                    TextAmount.setText("");
+                    TextRoomnumber.setText("");
+                }
             } catch (ClassNotFoundException | SQLException e) {
             }
 
-        } 
+        }
     }//GEN-LAST:event_CHECKOUTActionPerformed
+
+    private void RecordtableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_RecordtableMouseClicked
+        // TODO add your handling code here:
+
+        DefaultTableModel RecordTable = (DefaultTableModel) Recordtable.getModel();
+        int SelectedRows = Recordtable.getSelectedRow();
+        Textname.setText(RecordTable.getValueAt(SelectedRows, 0).toString());
+        Textnumber.setText(RecordTable.getValueAt(SelectedRows, 1).toString());
+        TextCheckinDate.setText(RecordTable.getValueAt(SelectedRows, 6).toString());
+        TextPriceParDay.setText(RecordTable.getValueAt(SelectedRows, 7).toString());
+        TextAdhar.setText(RecordTable.getValueAt(SelectedRows, 2).toString());
+        TextRoomnumber.setText(RecordTable.getValueAt(SelectedRows, 3).toString());
+
+       // String s1= outdate.getText();
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        String date1 = sdf.format(jDateChooser1.getDate());
+        String s1= date1;
+        SimpleDateFormat sim=new SimpleDateFormat("yyyy-MM-dd");
+        String f1=RecordTable.getValueAt(SelectedRows, 6).toString();
+        String f2=s1;
+        try{
+            Date d1=sim.parse(f1);
+            Date d2=sim.parse(f2);
+            long diff=d2.getTime()-d1.getTime();
+            int days=(int)(diff/(1000*24*60*60));
+            if(days==0){
+                TextNoofdays.setText("1");
+            }
+            else{
+                TextNoofdays.setText(String.valueOf(days));
+            }
+            double p=Double.parseDouble(RecordTable.getValueAt(SelectedRows,7).toString());
+            pri=days*p;
+
+            if(days==0)
+            TextAmount.setText(String.valueOf(p));
+            else
+            TextAmount.setText(String.valueOf(pri));
+        }catch(Exception e){
+        }
+    }//GEN-LAST:event_RecordtableMouseClicked
 
     /**
      * @param args the command line arguments
@@ -679,7 +697,8 @@ public class CustomerCheckout extends javax.swing.JFrame {
     private javax.swing.JTextField Textname;
     private javax.swing.JTextField Textnumber;
     private javax.swing.JLabel Time;
-    private javax.swing.JPanel checkout;
+    private com.toedter.calendar.JDateChooser jDateChooser1;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel21;
     private javax.swing.JLabel jLabel22;
     private javax.swing.JLabel jLabel23;
@@ -692,7 +711,7 @@ public class CustomerCheckout extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel14;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTextField outdate;
+    private javax.swing.JComboBox<String> paymentmathod;
     private javax.swing.JTextField time;
     // End of variables declaration//GEN-END:variables
 }

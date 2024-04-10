@@ -28,6 +28,7 @@ public class GenerateBill extends javax.swing.JFrame {
     String price;
     String days;
     String amount;
+    String peymant;
     /**
      * Creates new form GenerateBill
      */
@@ -47,11 +48,13 @@ public class GenerateBill extends javax.swing.JFrame {
         txtbill.setText(txtbill.getText()+"Bed:- "+bed+"\n");
         txtbill.setText(txtbill.getText()+"Price:- "+price+"\n");
         txtbill.setText(txtbill.getText()+"Check IN Date="+indate+"\t\tNumber of Days="+days+"\n");
+        txtbill.setText(txtbill.getText()+"Mode of Paymant:- "+peymant+"\n");
         txtbill.setText(txtbill.getText()+"Check OUT Date="+outdate+"\t\tTotal Amount="+amount+"\n");
         txtbill.setText(txtbill.getText()+"**********************************************************************************\n");
         txtbill.setText(txtbill.getText()+"\t\t"+"                    Thank You,Please Visit Again.");
         }
-    public void connect(){
+    
+        public void connect(){
         PreparedStatement pst;
         ResultSet rs;
         try {
@@ -68,6 +71,7 @@ public class GenerateBill extends javax.swing.JFrame {
                 type=rs.getString("Roomtype");
                 indate=rs.getString("checkin");
                 price=rs.getString("Price");
+                
    
             }
         
@@ -86,6 +90,7 @@ public class GenerateBill extends javax.swing.JFrame {
                 days=rs.getString("noofday");
                 outdate=rs.getString("checkout");
                 amount=rs.getString("amount");
+                peymant=rs.getString("modeofpeymant");
             }
         
         } catch (ClassNotFoundException | SQLException ex) {

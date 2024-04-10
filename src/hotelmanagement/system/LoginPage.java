@@ -27,6 +27,7 @@ public class LoginPage extends javax.swing.JFrame {
      */
     public LoginPage() {
         initComponents();
+      
        
     }
 
@@ -167,15 +168,14 @@ public class LoginPage extends javax.swing.JFrame {
                         .addComponent(jLabel5)
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addComponent(showpassword)
-                            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addComponent(userlogin, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(Signup, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 344, Short.MAX_VALUE)
-                                .addComponent(userpassword, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 344, Short.MAX_VALUE)
-                                .addComponent(username, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 344, Short.MAX_VALUE)
-                                .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.LEADING)))
+                            .addComponent(userlogin, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(Signup, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 344, Short.MAX_VALUE)
+                            .addComponent(userpassword, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 344, Short.MAX_VALUE)
+                            .addComponent(username, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 344, Short.MAX_VALUE)
+                            .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.LEADING))
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
         jPanel2Layout.setVerticalGroup(
@@ -238,28 +238,45 @@ public class LoginPage extends javax.swing.JFrame {
         Date currDate= calendar.getTime();
         String t= timeFormat.format(currDate);
         
+        
         PreparedStatement pst;
         ResultSet rs;
+        //int count = 0;
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
             java.sql.Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/hotels","root","123456");
-            pst=con.prepareStatement("select * from loginpage where username=? AND password=?");
+            pst=con.prepareStatement("select id,username,password from loginpage Where (username =? and password =?)");
             pst.setString(1,username.getText());
             pst.setString(2, userpassword.getText());
             rs=pst.executeQuery();
+           
+             
+                
             if(rs.next()){
-                    new HomePage().setVisible(true);
-            }
-            else{
-              JOptionPane.showMessageDialog(this,"Incorrect Email ID or Password");
-            }
-            pst=con.prepareStatement("insert into loginstatus(name,date,logintime)values(?,?,?)");
+               // while(rs.next()){
+                //int id2 = rs.getInt(1);
+                //id.userid = id2;
+                //count = count+1;
+                String f = null;
+            int id2 = rs.getInt(1);
+                id.userid = id2;
+            int value = id.userid;
+            pst=con.prepareStatement("insert into loginstatus(name,date,logintime,logouttime,id)values(?,?,?,?,?)");
             pst.setString(1, username.getText());
             pst.setString(2, s);
             pst.setString(3, t);
+            pst.setString(4, f);
+            pst.setInt(5, value);
             pst.executeUpdate();
+            new HomePage().setVisible(true);
+            }  
+           else{
+              JOptionPane.showMessageDialog(this,"Incorrect Email ID or Password");
+            }
             
-            
+         
+           
+          
         } catch (ClassNotFoundException | SQLException ex) {
             Logger.getLogger(LoginPage.class.getName()).log(Level.SEVERE, null, ex);
         }

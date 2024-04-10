@@ -23,11 +23,11 @@ public class customerCheckin extends javax.swing.JFrame {
 
     public customerCheckin() {
          initComponents();
-         SimpleDateFormat  dat=new SimpleDateFormat("yyyy/MM/dd ");
+         /*SimpleDateFormat  dat=new SimpleDateFormat("yyyy/MM/dd ");
          Date d=new Date();
          customercheckindate.setText(dat.format(d));
          CUSTOMERNAME.requestFocus();
-         
+         */
         PreparedStatement pst;
         ResultSet rs;
         try {
@@ -73,7 +73,6 @@ public class customerCheckin extends javax.swing.JFrame {
         jLabel16 = new javax.swing.JLabel();
         CustomerNationnality = new javax.swing.JTextField();
         jLabel17 = new javax.swing.JLabel();
-        customercheckindate = new javax.swing.JTextField();
         jLabel18 = new javax.swing.JLabel();
         jComboBoxbedtype = new javax.swing.JComboBox<>();
         jLabel19 = new javax.swing.JLabel();
@@ -87,6 +86,7 @@ public class customerCheckin extends javax.swing.JFrame {
         jLabel31 = new javax.swing.JLabel();
         jComboBoxRoomnumber = new javax.swing.JComboBox<>();
         jButton1 = new javax.swing.JButton();
+        jDateChooser1 = new com.toedter.calendar.JDateChooser();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setAlwaysOnTop(true);
@@ -156,8 +156,6 @@ public class customerCheckin extends javax.swing.JFrame {
         jLabel17.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel17.setForeground(new java.awt.Color(0, 51, 51));
         jLabel17.setText("Check in Date");
-
-        customercheckindate.setEditable(false);
 
         jLabel18.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel18.setForeground(new java.awt.Color(0, 51, 51));
@@ -251,6 +249,8 @@ public class customerCheckin extends javax.swing.JFrame {
             }
         });
 
+        jDateChooser1.setDateFormatString("yyyy-MM-dd");
+
         javax.swing.GroupLayout jPanel13Layout = new javax.swing.GroupLayout(jPanel13);
         jPanel13.setLayout(jPanel13Layout);
         jPanel13Layout.setHorizontalGroup(
@@ -284,31 +284,31 @@ public class customerCheckin extends javax.swing.JFrame {
                 .addGroup(jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel13Layout.createSequentialGroup()
                         .addGap(24, 24, 24)
-                        .addGroup(jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addGroup(jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel13Layout.createSequentialGroup()
+                                .addComponent(jLabel31)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 44, Short.MAX_VALUE)
+                                .addComponent(jComboBoxRoomnumber, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel13Layout.createSequentialGroup()
+                                .addComponent(jLabel18)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jComboBoxbedtype, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jPanel13Layout.createSequentialGroup()
-                                .addGroup(jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel13Layout.createSequentialGroup()
-                                        .addComponent(jLabel31)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(jComboBoxRoomnumber, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(jLabel20)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(roomprice, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel13Layout.createSequentialGroup()
+                                .addGroup(jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(jPanel13Layout.createSequentialGroup()
                                         .addComponent(jLabel19)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(jComboBoxroomtype, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel13Layout.createSequentialGroup()
-                                        .addComponent(jLabel18)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 74, Short.MAX_VALUE)
-                                        .addComponent(jComboBoxbedtype, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(jPanel13Layout.createSequentialGroup()
-                                        .addComponent(jLabel20)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(roomprice, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                .addGap(62, 62, 62))
-                            .addGroup(jPanel13Layout.createSequentialGroup()
-                                .addComponent(jLabel17)
-                                .addGap(49, 49, 49)
-                                .addComponent(customercheckindate, javax.swing.GroupLayout.PREFERRED_SIZE, 179, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(54, 54, 54))))
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel13Layout.createSequentialGroup()
+                                        .addComponent(jLabel17)
+                                        .addGap(49, 49, 49)))
+                                .addGroup(jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(jComboBoxroomtype, 0, 171, Short.MAX_VALUE)
+                                    .addComponent(jDateChooser1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                        .addGap(62, 62, 62))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel13Layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -322,11 +322,12 @@ public class customerCheckin extends javax.swing.JFrame {
                     .addComponent(jLabel8)
                     .addComponent(jButton1))
                 .addGap(52, 52, 52)
-                .addGroup(jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel13)
-                    .addComponent(CUSTOMERNAME, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel17)
-                    .addComponent(customercheckindate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel13)
+                        .addComponent(CUSTOMERNAME, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel17))
+                    .addComponent(jDateChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 69, Short.MAX_VALUE)
                 .addGroup(jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(customernumber, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -509,7 +510,9 @@ public class customerCheckin extends javax.swing.JFrame {
             pst.setString(3, ComboBoxgender.getItemAt(ComboBoxgender.getSelectedIndex()));
             pst.setString(4, AdharNumber.getText());
             pst.setString(5, CustomerNationnality.getText());
-            pst.setString(6, customercheckindate.getText());
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+            String date1 = sdf.format(jDateChooser1.getDate());
+            pst.setString(6, date1);
             pst.setString(7, (String) jComboBoxRoomnumber.getSelectedItem());
             pst.setString(8,(String) jComboBoxbedtype.getSelectedItem());
             pst.setString(9, (String) jComboBoxroomtype.getSelectedItem());
@@ -540,6 +543,7 @@ public class customerCheckin extends javax.swing.JFrame {
             customernumber.setText("");
             CustomerNationnality.setText("");
             AdharNumber.setText("");
+            jDateChooser1.setCalendar(null);
             ComboBoxgender.setSelectedIndex(0);
             jComboBoxbedtype.setSelectedIndex(0);
             jComboBoxroomtype.setSelectedIndex(0);
@@ -583,6 +587,7 @@ public class customerCheckin extends javax.swing.JFrame {
         customernumber.setText("");
         CustomerNationnality.setText("");
         AdharNumber.setText("");
+        jDateChooser1.setCalendar(null);
         ComboBoxgender.setSelectedIndex(0);
         jComboBoxbedtype.setSelectedIndex(0);
         jComboBoxroomtype.setSelectedIndex(0);
@@ -723,12 +728,12 @@ public class customerCheckin extends javax.swing.JFrame {
     private javax.swing.JButton Clear;
     private javax.swing.JComboBox<String> ComboBoxgender;
     private javax.swing.JTextField CustomerNationnality;
-    private javax.swing.JTextField customercheckindate;
     private javax.swing.JTextField customernumber;
     private javax.swing.JButton jButton1;
     private javax.swing.JComboBox<String> jComboBoxRoomnumber;
     private javax.swing.JComboBox<String> jComboBoxbedtype;
     private javax.swing.JComboBox<String> jComboBoxroomtype;
+    private com.toedter.calendar.JDateChooser jDateChooser1;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
