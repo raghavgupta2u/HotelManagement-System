@@ -21,13 +21,13 @@ import javax.swing.JOptionPane;
  */
 
 public class LoginPage extends javax.swing.JFrame {
-
+    static int userid;
     /**
      * Creates new form LoginPage
      */
     public LoginPage() {
         initComponents();
-      
+    
        
     }
 
@@ -259,8 +259,8 @@ public class LoginPage extends javax.swing.JFrame {
                 //count = count+1;
                 String f = null;
             int id2 = rs.getInt(1);
-                id.userid = id2;
-            int value = id.userid;
+                userid = id2;
+            int value = userid;
             pst=con.prepareStatement("insert into loginstatus(name,date,logintime,logouttime,id)values(?,?,?,?,?)");
             pst.setString(1, username.getText());
             pst.setString(2, s);

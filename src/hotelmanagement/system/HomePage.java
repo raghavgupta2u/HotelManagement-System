@@ -27,7 +27,7 @@ public class HomePage extends javax.swing.JFrame {
      public HomePage() throws ClassNotFoundException {
         initComponents();
          setExtendedState(JFrame.MAXIMIZED_BOTH);
-         username.setText(String.valueOf(id.userid).toString());
+         username.setText(String.valueOf(LoginPage.userid).toString());
        }
     
     //Manage room frame coding
