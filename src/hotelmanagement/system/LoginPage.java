@@ -238,7 +238,6 @@ public class LoginPage extends javax.swing.JFrame {
         Date currDate= calendar.getTime();
         String t= timeFormat.format(currDate);
         
-        
         PreparedStatement pst;
         ResultSet rs;
         //int count = 0;
@@ -253,11 +252,7 @@ public class LoginPage extends javax.swing.JFrame {
              
                 
             if(rs.next()){
-               // while(rs.next()){
-                //int id2 = rs.getInt(1);
-                //id.userid = id2;
-                //count = count+1;
-                String f = null;
+              String f = null;
             int id2 = rs.getInt(1);
                 userid = id2;
             int value = userid;

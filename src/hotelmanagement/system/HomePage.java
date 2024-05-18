@@ -441,7 +441,9 @@ public class HomePage extends javax.swing.JFrame {
 
         int yes=JOptionPane.showConfirmDialog(this,"Are you sure?","Exit",JOptionPane.YES_NO_OPTION,JOptionPane.QUESTION_MESSAGE);
         if(yes==JOptionPane.YES_OPTION);
-        System.exit(0);
+        //System.exit(0);
+        this.dispose();
+         new LoginPage().setVisible(true);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jPanel7MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel7MouseClicked
