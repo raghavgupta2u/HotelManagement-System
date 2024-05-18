@@ -238,6 +238,11 @@ public class HomePage extends javax.swing.JFrame {
         jLabel8.setText("Employe");
 
         jPanel2.setBackground(new java.awt.Color(0, 51, 51));
+        jPanel2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jPanel2MouseClicked(evt);
+            }
+        });
 
         jLabel9.setForeground(new java.awt.Color(255, 255, 255));
         jLabel9.setText("Add Employe");
@@ -259,6 +264,11 @@ public class HomePage extends javax.swing.JFrame {
         );
 
         jPanel9.setBackground(new java.awt.Color(0, 51, 51));
+        jPanel9.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jPanel9MouseClicked(evt);
+            }
+        });
 
         jLabel13.setForeground(new java.awt.Color(255, 255, 255));
         jLabel13.setText("Add Driver");
@@ -574,7 +584,7 @@ public class HomePage extends javax.swing.JFrame {
 
     private void jPanel7MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel7MouseClicked
         // TODO add your handling code here:
-        new Customerbilling().setVisible(true);
+        new ManagerInfo().setVisible(true);
     }//GEN-LAST:event_jPanel7MouseClicked
 
     private void jLabel5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel5MouseClicked
@@ -584,7 +594,6 @@ public class HomePage extends javax.swing.JFrame {
     private void jPanel4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel4MouseClicked
         // TODO add your handling code here:
         new ManagRoom().setVisible(true);
-
     }//GEN-LAST:event_jPanel4MouseClicked
 
     private void manageroomMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_manageroomMouseClicked
@@ -597,6 +606,7 @@ public class HomePage extends javax.swing.JFrame {
 
     private void jPanel10MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel10MouseClicked
         // TODO add your handling code here:
+        new AllEmployees().setVisible(true);
     }//GEN-LAST:event_jPanel10MouseClicked
 
     private void jLabel15MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel15MouseClicked
@@ -605,6 +615,7 @@ public class HomePage extends javax.swing.JFrame {
 
     private void jPanel11MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel11MouseClicked
         // TODO add your handling code here:
+        new Pickup().setVisible(true);
     }//GEN-LAST:event_jPanel11MouseClicked
 
     private void jLabel16MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel16MouseClicked
@@ -613,6 +624,7 @@ public class HomePage extends javax.swing.JFrame {
 
     private void jPanel12MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel12MouseClicked
         // TODO add your handling code here:
+        new customerCheckin().setVisible(true);
     }//GEN-LAST:event_jPanel12MouseClicked
 
     private void jLabel17MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel17MouseClicked
@@ -621,7 +633,18 @@ public class HomePage extends javax.swing.JFrame {
 
     private void jPanel13MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel13MouseClicked
         // TODO add your handling code here:
+                new CustomerCheckout().setVisible(true);
     }//GEN-LAST:event_jPanel13MouseClicked
+
+    private void jPanel2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel2MouseClicked
+        // TODO add your handling code here:
+                new AddEmployeee().setVisible(true);
+    }//GEN-LAST:event_jPanel2MouseClicked
+
+    private void jPanel9MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel9MouseClicked
+        // TODO add your handling code here:
+                new AddDriver().setVisible(true);
+    }//GEN-LAST:event_jPanel9MouseClicked
       
    
     /**
