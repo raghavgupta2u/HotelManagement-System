@@ -230,12 +230,12 @@
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel5">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Admin Username"/>
+                <Property name="text" type="java.lang.String" value="Maneger Name"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel6">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Admin Password"/>
+                <Property name="text" type="java.lang.String" value="Manegar Password"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel7">

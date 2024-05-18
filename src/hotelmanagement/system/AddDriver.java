@@ -48,6 +48,8 @@ public class AddDriver extends javax.swing.JFrame {
         locationText = new javax.swing.JTextField();
         AddDriver = new javax.swing.JButton();
         cancel = new javax.swing.JButton();
+        jLabel8 = new javax.swing.JLabel();
+        phoneno = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -85,6 +87,8 @@ public class AddDriver extends javax.swing.JFrame {
 
         cancel.setText("Cancel");
 
+        jLabel8.setText("phone");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -119,16 +123,21 @@ public class AddDriver extends javax.swing.JFrame {
                                 .addComponent(AddDriver)
                                 .addGap(18, 18, 18)))))
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(name)
-                        .addComponent(ageText)
-                        .addComponent(genderCombo, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(carcompanyCombo, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(carmodelCombo, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(statusCombo, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(locationText))
-                    .addComponent(cancel))
-                .addGap(560, 560, 560))
+                    .addComponent(cancel)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(name)
+                            .addComponent(ageText)
+                            .addComponent(genderCombo, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(carcompanyCombo, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(carmodelCombo, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(statusCombo, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(locationText))
+                        .addGap(100, 100, 100)
+                        .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(34, 34, 34)
+                        .addComponent(phoneno, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(318, 318, 318))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -136,7 +145,9 @@ public class AddDriver extends javax.swing.JFrame {
                 .addGap(67, 67, 67)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
-                    .addComponent(name, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(name, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel8)
+                    .addComponent(phoneno, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel2)
@@ -192,7 +203,7 @@ public class AddDriver extends javax.swing.JFrame {
             try {
             Class.forName("com.mysql.cj.jdbc.Driver");
             java.sql.Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/hotels","root","123456");
-            pst=con.prepareStatement("insert into emp(name,age,gender,company,brand,available,location)values(?,?,?,?,?,?,?)");
+            pst=con.prepareStatement("insert into emp(name,age,gender,company,brand,available,location,phone)values(?,?,?,?,?,?,?,?)");
             pst.setString(1, name.getText());
             pst.setString(2, ageText.getText());
             pst.setString(3, genderCombo.getItemAt(genderCombo.getSelectedIndex()));
@@ -200,9 +211,11 @@ public class AddDriver extends javax.swing.JFrame {
             pst.setString(5,carcompanyCombo.getItemAt(carcompanyCombo.getSelectedIndex()));
             pst.setString(6, carcompanyCombo.getItemAt(carcompanyCombo.getSelectedIndex()));
             pst.setString(7,locationText.getText());
+            pst.setString(8,phoneno.getText());
             pst.executeQuery();
                  
             }catch(ClassNotFoundException | SQLException e){
+                
         }
     }//GEN-LAST:event_AddDriverActionPerformed
 
@@ -284,9 +297,11 @@ public class AddDriver extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JTextField locationText;
     private javax.swing.JTextField name;
+    private javax.swing.JTextField phoneno;
     private javax.swing.JComboBox<String> statusCombo;
     // End of variables declaration//GEN-END:variables
 }

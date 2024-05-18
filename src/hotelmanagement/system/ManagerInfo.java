@@ -4,6 +4,14 @@
  */
 package hotelmanagement.system;
 
+import com.mysql.cj.jdbc.result.ResultSetMetaData;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.Vector;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author ASUS
@@ -15,6 +23,40 @@ public class ManagerInfo extends javax.swing.JFrame {
      */
     public ManagerInfo() {
         initComponents();
+        Allemp();
+    }
+    public void Allemp(){
+    PreparedStatement pst=null;
+    java.sql.Statement st=null;
+    ResultSet rs=null;
+    java.sql.Connection con=null; 
+        try {
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            con=DriverManager.getConnection("jdbc:mysql://localhost:3306/hotels","root","123456");
+            pst=con.prepareStatement("Select * from emp where job=manager");
+            rs=pst.executeQuery();
+            ResultSetMetaData stData=(ResultSetMetaData) rs.getMetaData();
+            //System.out.print(stData);
+            int q=stData.getColumnCount();
+            DefaultTableModel RecordTable= (DefaultTableModel) jTable1.getModel();
+            //System.out.print(RecordTable);
+            RecordTable.setRowCount(0);
+            while(rs.next()){
+                //Vector is like the dynamic array.
+                Vector columnData=new Vector();
+                for(int i=1;i<=q;i++){
+                    columnData.add(rs.getString("name"));
+                    columnData.add(rs.getString("age"));
+                    columnData.add(rs.getString("gendar"));
+                    columnData.add(rs.getString("phone"));
+                    columnData.add(rs.getString("email"));
+                }
+                RecordTable.addRow(columnData);
+                //System.out.println(columnData);
+
+            }  
+        } catch (ClassNotFoundException | SQLException ex) {}
+        
     }
 
     /**
@@ -33,19 +75,22 @@ public class ManagerInfo extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
+        jPanel1.setBackground(new java.awt.Color(0, 51, 51));
+
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null}
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "Name", "Age", "Gender", "Phone", "Email"
             }
         ));
         jScrollPane1.setViewportView(jTable1);
 
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("MANAGER INFO");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);

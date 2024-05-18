@@ -84,18 +84,24 @@
                       </Group>
                   </Group>
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                          <Component id="name" max="32767" attributes="0"/>
-                          <Component id="ageText" max="32767" attributes="0"/>
-                          <Component id="genderCombo" max="32767" attributes="0"/>
-                          <Component id="carcompanyCombo" max="32767" attributes="0"/>
-                          <Component id="carmodelCombo" max="32767" attributes="0"/>
-                          <Component id="statusCombo" max="32767" attributes="0"/>
-                          <Component id="locationText" max="32767" attributes="0"/>
+                      <Component id="cancel" alignment="0" min="-2" max="-2" attributes="0"/>
+                      <Group type="102" alignment="0" attributes="0">
+                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                              <Component id="name" max="32767" attributes="0"/>
+                              <Component id="ageText" max="32767" attributes="0"/>
+                              <Component id="genderCombo" max="32767" attributes="0"/>
+                              <Component id="carcompanyCombo" max="32767" attributes="0"/>
+                              <Component id="carmodelCombo" max="32767" attributes="0"/>
+                              <Component id="statusCombo" max="32767" attributes="0"/>
+                              <Component id="locationText" max="32767" attributes="0"/>
+                          </Group>
+                          <EmptySpace min="-2" pref="100" max="-2" attributes="0"/>
+                          <Component id="jLabel8" min="-2" pref="37" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="34" max="-2" attributes="0"/>
+                          <Component id="phoneno" min="-2" pref="71" max="-2" attributes="0"/>
                       </Group>
-                      <Component id="cancel" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace min="-2" pref="560" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="318" max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -106,6 +112,8 @@
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="jLabel1" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="name" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="jLabel8" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="phoneno" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
@@ -255,6 +263,13 @@
           <Properties>
             <Property name="text" type="java.lang.String" value="Cancel"/>
           </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="jLabel8">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="phone"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JTextField" name="phoneno">
         </Component>
       </SubComponents>
     </Container>

@@ -90,9 +90,9 @@ public class SingupPage extends javax.swing.JFrame {
 
         jLabel4.setText("Confirm Password");
 
-        jLabel5.setText("Admin Username");
+        jLabel5.setText("Maneger Name");
 
-        jLabel6.setText("Admin Password");
+        jLabel6.setText("Manegar Password");
 
         jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/0735819653444d2986b34600be245ff5 (2) (2).png"))); // NOI18N
         jLabel7.setText("jLabel7");
