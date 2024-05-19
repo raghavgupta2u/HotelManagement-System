@@ -46,7 +46,6 @@ public class Pickup extends javax.swing.JFrame {
                 Vector columnData=new Vector();
                 for(int i=1;i<=q;i++){
                     columnData.add(rs.getString("name"));
-                    columnData.add(rs.getString("available"));
                     columnData.add(rs.getString("company"));
                     columnData.add(rs.getString("brand"));
                     columnData.add(rs.getString("phone"));
@@ -81,18 +80,19 @@ public class Pickup extends javax.swing.JFrame {
         jButton2 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setUndecorated(true);
 
         jPanel1.setBackground(new java.awt.Color(0, 51, 51));
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null}
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
             },
             new String [] {
-                "name", "Avilabale", "Brand", "Model", "phone"
+                "name", "Avilabale", "Model", "phone"
             }
         ));
         jScrollPane1.setViewportView(jTable1);
@@ -178,6 +178,7 @@ public class Pickup extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void carcompanyComboActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_carcompanyComboActionPerformed
@@ -210,16 +211,14 @@ public class Pickup extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-            PreparedStatement pst=null;
+             PreparedStatement pst=null;
     java.sql.Statement st=null;
     ResultSet rs=null;
     java.sql.Connection con=null; 
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
             con=DriverManager.getConnection("jdbc:mysql://localhost:3306/hotels","root","123456");
-            pst=con.prepareStatement("Select * from Driver where company=? and brand=?");
-            pst.setString(1, carcompanyCombo.getItemAt(carcompanyCombo.getSelectedIndex()));
-            pst.setString(2, carmodelCombo.getItemAt(carmodelCombo.getSelectedIndex()));
+            pst=con.prepareStatement("Select * from driver");
             rs=pst.executeQuery();
             ResultSetMetaData stData=(ResultSetMetaData) rs.getMetaData();
             //System.out.print(stData);
@@ -232,10 +231,10 @@ public class Pickup extends javax.swing.JFrame {
                 Vector columnData=new Vector();
                 for(int i=1;i<=q;i++){
                     columnData.add(rs.getString("name"));
-                    columnData.add(rs.getString("available"));
                     columnData.add(rs.getString("company"));
                     columnData.add(rs.getString("brand"));
                     columnData.add(rs.getString("phone"));
+                    
                 }
                 RecordTable.addRow(columnData);
                 //System.out.println(columnData);

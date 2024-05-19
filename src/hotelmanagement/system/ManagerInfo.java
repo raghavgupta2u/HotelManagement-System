@@ -33,7 +33,7 @@ public class ManagerInfo extends javax.swing.JFrame {
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
             con=DriverManager.getConnection("jdbc:mysql://localhost:3306/hotels","root","123456");
-            pst=con.prepareStatement("Select * from emp where job=manager");
+            pst=con.prepareStatement("Select from emp where job = manager");
             rs=pst.executeQuery();
             ResultSetMetaData stData=(ResultSetMetaData) rs.getMetaData();
             //System.out.print(stData);
@@ -47,7 +47,7 @@ public class ManagerInfo extends javax.swing.JFrame {
                 for(int i=1;i<=q;i++){
                     columnData.add(rs.getString("name"));
                     columnData.add(rs.getString("age"));
-                    columnData.add(rs.getString("gendar"));
+                    columnData.add(rs.getString("gender"));
                     columnData.add(rs.getString("phone"));
                     columnData.add(rs.getString("email"));
                 }
@@ -75,6 +75,7 @@ public class ManagerInfo extends javax.swing.JFrame {
         jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setUndecorated(true);
 
         jPanel1.setBackground(new java.awt.Color(0, 51, 51));
 
@@ -140,6 +141,7 @@ public class ManagerInfo extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed

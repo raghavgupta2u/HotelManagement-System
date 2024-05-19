@@ -3,10 +3,11 @@
 <Form version="1.5" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JFrameFormInfo">
   <Properties>
     <Property name="defaultCloseOperation" type="int" value="3"/>
+    <Property name="undecorated" type="boolean" value="true"/>
   </Properties>
   <SyntheticProperties>
     <SyntheticProperty name="formSizePolicy" type="int" value="1"/>
-    <SyntheticProperty name="generateCenter" type="boolean" value="false"/>
+    <SyntheticProperty name="generateCenter" type="boolean" value="true"/>
   </SyntheticProperties>
   <AuxValues>
     <AuxValue name="FormSettings_autoResourcing" type="java.lang.Integer" value="0"/>
@@ -92,16 +93,15 @@
         <Component class="javax.swing.JComboBox" name="jobCombo">
           <Properties>
             <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-              <StringArray count="9">
+              <StringArray count="8">
                 <StringItem index="0" value="Front Desk Clerks"/>
                 <StringItem index="1" value="Poters"/>
                 <StringItem index="2" value="Housekeeping"/>
                 <StringItem index="3" value="Kitchen staff"/>
                 <StringItem index="4" value="Room Service"/>
                 <StringItem index="5" value="Waiter/Waitress"/>
-                <StringItem index="6" value="Manager"/>
-                <StringItem index="7" value="Accountant"/>
-                <StringItem index="8" value="chef "/>
+                <StringItem index="6" value="Accountant"/>
+                <StringItem index="7" value="chef "/>
               </StringArray>
             </Property>
           </Properties>
@@ -114,7 +114,7 @@
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="ff" green="ff" red="ff" type="rgb"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="Show By Job"/>
+            <Property name="text" type="java.lang.String" value="Job Role"/>
           </Properties>
         </Component>
         <Container class="javax.swing.JScrollPane" name="jScrollPane1">

@@ -246,6 +246,11 @@ public class HomePage extends javax.swing.JFrame {
 
         jLabel9.setForeground(new java.awt.Color(255, 255, 255));
         jLabel9.setText("Add Employe");
+        jLabel9.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel9MouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -272,6 +277,11 @@ public class HomePage extends javax.swing.JFrame {
 
         jLabel13.setForeground(new java.awt.Color(255, 255, 255));
         jLabel13.setText("Add Driver");
+        jLabel13.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel13MouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel9Layout = new javax.swing.GroupLayout(jPanel9);
         jPanel9.setLayout(jPanel9Layout);
@@ -483,12 +493,12 @@ public class HomePage extends javax.swing.JFrame {
 
         jLabel10.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabel10.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel10.setText("The Seaside hotle is the right choice for visitors who are searching\n");
+        jLabel10.setText("The Seaside hotel is the right choice for visitor's who are searching\n");
         jPanel5.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 350, 550, 50));
 
         jLabel11.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabel11.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel11.setText("for a combination of charm,peace and comfort");
+        jLabel11.setText("for a combination of charm,peace and comfort...\n");
         jPanel5.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 390, -1, -1));
 
         jLabel12.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
@@ -503,9 +513,9 @@ public class HomePage extends javax.swing.JFrame {
 
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/user me.png"))); // NOI18N
-        jPanel5.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(1120, 10, -1, 40));
+        jPanel5.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(1120, 10, 30, 40));
 
-        jLabel6.setIcon(new javax.swing.ImageIcon("C:\\Users\\ASUS\\Downloads\\pexels-pixabay-261169.jpg")); // NOI18N
+        jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/pexels-pixabay-261169.jpg"))); // NOI18N
         jPanel5.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1170, 780));
 
         jPanel1.add(jPanel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 0, 1510, 780));
@@ -588,7 +598,7 @@ public class HomePage extends javax.swing.JFrame {
     }//GEN-LAST:event_jPanel7MouseClicked
 
     private void jLabel5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel5MouseClicked
-        new Customerbilling().setVisible(true);
+         new ManagerInfo().setVisible(true);
     }//GEN-LAST:event_jLabel5MouseClicked
 
     private void jPanel4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel4MouseClicked
@@ -602,6 +612,7 @@ public class HomePage extends javax.swing.JFrame {
 
     private void jLabel14MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel14MouseClicked
         // TODO add your handling code here:
+        new AllEmployees().setVisible(true);
     }//GEN-LAST:event_jLabel14MouseClicked
 
     private void jPanel10MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel10MouseClicked
@@ -611,6 +622,7 @@ public class HomePage extends javax.swing.JFrame {
 
     private void jLabel15MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel15MouseClicked
         // TODO add your handling code here:
+        new Pickup().setVisible(true);
     }//GEN-LAST:event_jLabel15MouseClicked
 
     private void jPanel11MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel11MouseClicked
@@ -620,6 +632,7 @@ public class HomePage extends javax.swing.JFrame {
 
     private void jLabel16MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel16MouseClicked
         // TODO add your handling code here:
+        new customerCheckin().setVisible(true);
     }//GEN-LAST:event_jLabel16MouseClicked
 
     private void jPanel12MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel12MouseClicked
@@ -629,6 +642,7 @@ public class HomePage extends javax.swing.JFrame {
 
     private void jLabel17MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel17MouseClicked
         // TODO add your handling code here:
+        new CustomerCheckout().setVisible(true);
     }//GEN-LAST:event_jLabel17MouseClicked
 
     private void jPanel13MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel13MouseClicked
@@ -645,6 +659,16 @@ public class HomePage extends javax.swing.JFrame {
         // TODO add your handling code here:
                 new AddDriver().setVisible(true);
     }//GEN-LAST:event_jPanel9MouseClicked
+
+    private void jLabel9MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel9MouseClicked
+        // TODO add your handling code here:
+        new AddEmployeee().setVisible(true);
+    }//GEN-LAST:event_jLabel9MouseClicked
+
+    private void jLabel13MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel13MouseClicked
+        // TODO add your handling code here:
+        new AddDriver().setVisible(true);
+    }//GEN-LAST:event_jLabel13MouseClicked
       
    
     /**

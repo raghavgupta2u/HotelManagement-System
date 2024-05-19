@@ -48,7 +48,7 @@ public class AllEmployees extends javax.swing.JFrame {
                 for(int i=1;i<=q;i++){
                     columnData.add(rs.getString("name"));
                     columnData.add(rs.getString("age"));
-                    columnData.add(rs.getString("gendar"));
+                    columnData.add(rs.getString("gender"));
                     columnData.add(rs.getString("job"));
                     columnData.add(rs.getString("salary"));
                     columnData.add(rs.getString("phone"));
@@ -80,14 +80,15 @@ public class AllEmployees extends javax.swing.JFrame {
         jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setUndecorated(true);
 
         jPanel1.setBackground(new java.awt.Color(0, 51, 51));
         jPanel1.setForeground(new java.awt.Color(0, 51, 51));
 
-        jobCombo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Front Desk Clerks", "Poters", "Housekeeping", "Kitchen staff", "Room Service", "Waiter/Waitress", "Manager", "Accountant", "chef " }));
+        jobCombo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Front Desk Clerks", "Poters", "Housekeeping", "Kitchen staff", "Room Service", "Waiter/Waitress", "Accountant", "chef " }));
 
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel1.setText("Show By Job");
+        jLabel1.setText("Job Role");
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -166,19 +167,19 @@ public class AllEmployees extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void searchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchActionPerformed
         // TODO add your handling code here:
-        PreparedStatement pst=null;
+    PreparedStatement pst=null;
     java.sql.Statement st=null;
     ResultSet rs=null;
     java.sql.Connection con=null; 
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
             con=DriverManager.getConnection("jdbc:mysql://localhost:3306/hotels","root","123456");
-            pst=con.prepareStatement("Select * from emp where job=?");
-            pst.setString(1, jobCombo.getItemAt(jobCombo.getSelectedIndex()));
+            pst=con.prepareStatement("Select * from emp");
             rs=pst.executeQuery();
             ResultSetMetaData stData=(ResultSetMetaData) rs.getMetaData();
             //System.out.print(stData);
@@ -192,7 +193,7 @@ public class AllEmployees extends javax.swing.JFrame {
                 for(int i=1;i<=q;i++){
                     columnData.add(rs.getString("name"));
                     columnData.add(rs.getString("age"));
-                    columnData.add(rs.getString("gendar"));
+                    columnData.add(rs.getString("gender"));
                     columnData.add(rs.getString("job"));
                     columnData.add(rs.getString("salary"));
                     columnData.add(rs.getString("phone"));

@@ -353,7 +353,7 @@ public class ManagRoom extends javax.swing.JFrame {
                   
                 } catch (ClassNotFoundException | SQLException ex) {}
                 }catch(Exception e){
-                    JOptionPane.showMessageDialog(this,"Price is not valied");
+                    JOptionPane.showMessageDialog(this,"Price is not valid");
                     }
                 
             }
