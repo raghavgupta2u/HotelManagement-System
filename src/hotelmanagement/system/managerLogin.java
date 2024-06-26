@@ -4,6 +4,8 @@
  */
 package hotelmanagement.system;
 
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author ASUS
@@ -43,7 +45,7 @@ public class managerLogin extends javax.swing.JFrame {
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
-        jLabel1.setText("Manger ");
+        jLabel1.setText("Manager ");
 
         username.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -184,12 +186,17 @@ public class managerLogin extends javax.swing.JFrame {
     }//GEN-LAST:event_userpasswordActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        
+      new LoginPage().setVisible(true);  
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void userloginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_userloginActionPerformed
-
+    if ((username.getText().contains("raghav123")&& userpassword.getText().contains("abc123"))){
         
+   new manager().setVisible(true);
+    }
+    else {
+        JOptionPane.showMessageDialog(this,"Incorrect Email ID or Password");
+    }  
     }//GEN-LAST:event_userloginActionPerformed
 
     /**
